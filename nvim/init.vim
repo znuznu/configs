@@ -11,12 +11,13 @@ Plug 'chriskempson/base16-vim'
 Plug 'preservim/nerdtree'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " utils
 Plug 'jiangmiao/auto-pairs'
 Plug 'justinmk/vim-sneak'
 Plug 'vim-test/vim-test'
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plug 'HerringtonDarkholme/yats.vim'
 
 call plug#end()
@@ -27,6 +28,9 @@ set colorcolumn=80
 set autoindent
 set mouse=a
 set noshowmode
+set splitright
+set autoindent
+set nowrap
 
 " prettier
 let g:prettier#autoformat_config_present = 1
@@ -39,18 +43,25 @@ let g:prettier#autoformat_config_files = [
       \'.prettierrc.json',
       \'.prettierrc.toml']
 
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 " GUI
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ } 
 
 " mapping
+
+" moving line
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
 inoremap <A-j> <Esc>:m .+1<CR>==gi
 inoremap <A-k> <Esc>:m .-2<CR>==gi
 vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-j> :m '>+1<CR>gv=gv
+
+" CTRL + P to trigger fzf
+nnoremap <silent> <C-p> :FZF<CR>
 
 " rust
 let g:rustfmt_autosave = 1
