@@ -63,6 +63,10 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 " CTRL + P to trigger fzf
 nnoremap <silent> <C-p> :FZF<CR>
 
+" switch buffers
+nnoremap <C-I> :bp<CR>
+nnoremap <C-O> :bn<CR>
+
 " rust
 let g:rustfmt_autosave = 1
 
