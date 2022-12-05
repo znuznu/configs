@@ -1,69 +1,86 @@
-return require('packer').startup(function()
-    -- package manager
-    use 'wbthomason/packer.nvim' 
-    use 'williamboman/mason.nvim'    
-   
-    -- theme
-    use { 'bluz71/vim-moonfly-colors', branch = 'cterm-compat' }
+return require("packer").startup(
+    function()
+        -- package manager
+        use "wbthomason/packer.nvim"
+        use "williamboman/mason.nvim"
 
-    -- lsp
-    use 'williamboman/mason-lspconfig.nvim'
-    use 'neovim/nvim-lspconfig' 
+        -- theme
+        use {"bluz71/vim-moonfly-colors", branch = "cterm-compat"}
 
-    -- rust
-    use 'simrat39/rust-tools.nvim'
+        -- lsp
+        use "williamboman/mason-lspconfig.nvim"
+        use "neovim/nvim-lspconfig"
 
-    -- typescript
-    use 'jose-elias-alvarez/typescript.nvim'
-    use('jose-elias-alvarez/null-ls.nvim')
+        -- rust
+        use "simrat39/rust-tools.nvim"
 
-    -- prettier
-    use('MunifTanjim/prettier.nvim')
+        -- typescript
+        use "jose-elias-alvarez/typescript.nvim"
+        use("jose-elias-alvarez/null-ls.nvim")
 
-    -- eslint
-    use('MunifTanjim/eslint.nvim')
+        -- prettier
+        use("MunifTanjim/prettier.nvim")
 
-    -- plenary
-    use 'nvim-lua/plenary.nvim'
+        -- eslint
+        use("MunifTanjim/eslint.nvim")
 
-    -- completion framework
-    use 'hrsh7th/nvim-cmp' 
+        -- plenary
+        use "nvim-lua/plenary.nvim"
 
-    -- LSP completion source
-    use 'hrsh7th/cmp-nvim-lsp'
+        -- completion framework
+        use "hrsh7th/nvim-cmp"
 
-    -- completion utils
-    use 'hrsh7th/cmp-nvim-lua'
-    use 'hrsh7th/cmp-nvim-lsp-signature-help'
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/vim-vsnip'
+        -- LSP completion source
+        use "hrsh7th/cmp-nvim-lsp"
 
-    use 'nvim-treesitter/nvim-treesitter'
+        -- completion utils
+        use "hrsh7th/cmp-nvim-lua"
+        use "hrsh7th/cmp-nvim-lsp-signature-help"
+        use "hrsh7th/cmp-vsnip"
+        use "hrsh7th/cmp-path"
+        use "hrsh7th/cmp-buffer"
+        use "hrsh7th/vim-vsnip"
 
-    -- fancy folders/files tree
-    use { 
-	'nvim-tree/nvim-tree.lua',
-	requires = {
-		'nvim-tree/nvim-web-devicons', -- optional, for file icons
-	}
-    }
-	
-    -- autocomplete (), [] and {}
-    use {
-        "windwp/nvim-autopairs", 
-        config = function() require("nvim-autopairs").setup {} end
-    }
+        -- treesitter
+        use "nvim-treesitter/nvim-treesitter"
 
-    -- Highlight other uses of word under cursor
-    use 'RRethy/vim-illuminate' 
+        -- fuzzy finder
+        use {
+            "nvim-telescope/telescope.nvim",
+            tag = "0.1.0",
+            requires = {{"nvim-lua/plenary.nvim"}}
+        }
+        use {"nvim-telescope/telescope-fzf-native.nvim", run = "make"}
 
-   -- comment code
-   use {
-    'numToStr/Comment.nvim',
-    config = function()
-        require('Comment').setup()
+        -- probably useless
+        -- use 'BurntSushi/ripgrep'
+        -- use 'sharkdp/fd'
+
+        -- fancy folders/files tree
+        use {
+            "nvim-tree/nvim-tree.lua",
+            requires = {
+                "nvim-tree/nvim-web-devicons" -- optional, for file icons
+            }
+        }
+
+        -- autocomplete (), [] and {}
+        use {
+            "windwp/nvim-autopairs",
+            config = function()
+                require("nvim-autopairs").setup {}
+            end
+        }
+
+        -- Highlight other uses of word under cursor
+        use "RRethy/vim-illuminate"
+
+        -- comment code
+        use {
+            "numToStr/Comment.nvim",
+            config = function()
+                require("Comment").setup()
+            end
+        }
     end
-}
-end)
+)

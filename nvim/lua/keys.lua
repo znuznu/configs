@@ -1,6 +1,6 @@
 -- wrapper around nvim keymap function
 function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
+    local options = {noremap = true}
     if opts then
         options = vim.tbl_extend("force", options, opts)
     end
@@ -18,7 +18,7 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 ]])
 
 -- code actions
-map('n', "ca", ":lua vim.lsp.buf.code_action()<CR>")
+map("n", "ca", ":lua vim.lsp.buf.code_action()<CR>")
 vim.cmd([[
 nnoremap <silent> <c-]>     <cmd>lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> <c-k>     <cmd>lua vim.lsp.buf.signature_help()<CR>
@@ -31,3 +31,7 @@ nnoremap <silent> gn        <cmd>lua vim.lsp.buf.rename()<CR>
 nnoremap <silent> gs        <cmd>lua vim.lsp.buf.document_symbol()<CR>
 nnoremap <silent> gw        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 ]])
+
+-- telescope
+map("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>")
+map("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>")
