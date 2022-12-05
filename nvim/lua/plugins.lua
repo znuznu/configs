@@ -13,6 +13,19 @@ return require('packer').startup(function()
     -- rust
     use 'simrat39/rust-tools.nvim'
 
+    -- typescript
+    use 'jose-elias-alvarez/typescript.nvim'
+    use('jose-elias-alvarez/null-ls.nvim')
+
+    -- prettier
+    use('MunifTanjim/prettier.nvim')
+
+    -- eslint
+    use('MunifTanjim/eslint.nvim')
+
+    -- plenary
+    use 'nvim-lua/plenary.nvim'
+
     -- completion framework
     use 'hrsh7th/nvim-cmp' 
 

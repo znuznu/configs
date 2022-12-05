@@ -17,7 +17,7 @@ require("mason").setup({
 })
 require("mason-lspconfig").setup()
 
--------
+-------------
 -- Rust setup
 local rt = require("rust-tools")
 
@@ -29,6 +29,102 @@ rt.setup({
       -- Code action groups
       vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
     end,
+  },
+})
+
+-------------------
+-- TypeScript setup
+require('typescript').setup({
+    disable_commands = false, 
+    debug = false, 
+    go_to_source_definition = {
+        fallback = true, 
+    },
+})
+
+----------------
+-- null_ls setup
+local null_ls = require('null-ls')
+
+-- Avoiding LSP formatting conflicts
+local lsp_formatting = function(bufnr)
+    vim.lsp.buf.format({
+        filter = function(client)
+            -- apply whatever logic you want (in this example, we'll only use null-ls)
+            return client.name == "null-ls"
+        end,
+        bufnr = bufnr,
+    })
+end
+
+-- if you want to set up formatting on save, you can use this as a callback
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
+-- add to your shared on_attach callback
+local on_attach = function(client, bufnr)
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function()
+                lsp_formatting(bufnr)
+            end,
+        })
+    end
+end
+
+-- add to your shared on_attach callback
+null_ls.setup({
+    on_attach = on_attach,
+    sources = {
+	    null_ls.builtins.diagnostics.eslint_d.with({
+	    diagnostics_format = '[eslint] #{m}\n(#{c})'
+    }),
+    null_ls.builtins.diagnostics.fish,
+    require("typescript.extensions.null-ls.code-actions"),
+  }
+})
+
+-----------------
+-- Prettier setup
+require('prettier').setup({
+  bin = 'prettierd', 
+  filetypes = {
+    "css",
+    "graphql",
+    "html",
+    "javascript",
+    "javascriptreact",
+    "json",
+    "less",
+    "markdown",
+    "scss",
+    "typescript",
+    "typescriptreact",
+    "yaml",
+  },
+})
+
+---------------
+-- Eslint setup
+require('eslint').setup({
+	bin = 'eslint_d',
+	code_actions = {
+    enable = true,
+    apply_on_save = {
+      enable = true,
+      types = { "directive", "problem", "suggestion", "layout" },
+    },
+    disable_rule_comment = {
+      enable = true,
+      location = "separate_line", -- or `same_line`
+    },
+  },
+  diagnostics = {
+    enable = true,
+    report_unused_disable_directives = false,
+    run_on = "type", -- or `save`
   },
 })
 
@@ -90,7 +186,7 @@ cmp.setup({
 --------------------------
 -- Treesitter plugin setup 
 require('nvim-treesitter.configs').setup {
-  ensure_installed = { "lua", "rust", "toml" },
+  ensure_installed = { "lua", "rust", "toml", "typescript", "json", "css", "html", "tsx" },
   auto_install = true,
   highlight = {
     enable = true,
@@ -101,6 +197,9 @@ require('nvim-treesitter.configs').setup {
     enable = true,
     extended_mode = true,
     max_file_lines = nil,
+  },
+  autotag = {
+    enable = true,
   }
 }
 
