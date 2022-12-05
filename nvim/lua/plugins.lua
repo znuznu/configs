@@ -45,4 +45,12 @@ return require('packer').startup(function()
 
     -- Highlight other uses of word under cursor
     use 'RRethy/vim-illuminate' 
+
+   -- comment code
+   use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+}
 end)

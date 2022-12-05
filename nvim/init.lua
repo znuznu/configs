@@ -114,11 +114,16 @@ vim.g.loaded_netrwPlugin = 1
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
-require("nvim-tree").setup()
+require('nvim-tree').setup()
+require('nvim-web-devicons').setup()
 
 ------------------
 -- Autopairs setup
-require 'nvim-autopairs'.setup {}
+require('nvim-autopairs').setup {}
+
+----------------
+-- Comment setup
+require('Comment').setup()
 
 --------------
 -- Theme setup
