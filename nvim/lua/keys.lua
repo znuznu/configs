@@ -35,3 +35,13 @@ nnoremap <silent> gw        <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 -- telescope
 map("n", "<leader>ff", ":lua require('telescope.builtin').find_files()<cr>")
 map("n", "<leader>fg", ":lua require('telescope.builtin').live_grep()<cr>")
+map("n", "<leader>fb", ":lua require('telescope.builtin').buffers()<cr>")
+
+-- barbar
+-- Close buffer
+map('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+-- Magic buffer-picking mode
+map('n', '<C-p>', '<Cmd>BufferPick<CR>', opts)
+-- Move to previous/next
+map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', opts)
+map('n', '<A-;>', '<Cmd>BufferNext<CR>', opts)

@@ -279,6 +279,12 @@ require("todo-comments").setup()
 -- Lualine setup
 require('lualine').setup()
 
+---------------
+-- barbar setup
+require('bufferline').setup({
+	animation = false,
+})
+
 --------------
 -- Theme setup
 vim.cmd [[colorscheme moonfly]]

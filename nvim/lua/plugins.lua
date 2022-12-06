@@ -100,5 +100,8 @@ return require("packer").startup(
 	  "nvim-lualine/lualine.nvim",
 	  requires = { "kyazdani42/nvim-web-devicons", opt = true }
 	}
+
+	-- tabs
+	use {"romgrk/barbar.nvim", wants = "nvim-web-devicons"}
     end
 )
