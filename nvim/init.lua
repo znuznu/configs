@@ -146,6 +146,15 @@ require("eslint").setup(
     }
 )
 
+---------------
+-- Indent setup
+
+require("indent_blankline").setup({
+    use_treesitter = true,
+    use_treesitter_scope = true,
+    show_first_indent_level = true,
+})
+
 --------------------------
 -- Completion plugin setup
 local cmp = require "cmp"
@@ -261,6 +270,14 @@ require("nvim-autopairs").setup {}
 ----------------
 -- Comment setup
 require("Comment").setup()
+
+----------------------
+-- TODO comments setup
+require("todo-comments").setup()
+
+----------------
+-- Lualine setup
+require('lualine').setup()
 
 --------------
 -- Theme setup

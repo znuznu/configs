@@ -16,13 +16,13 @@ return require("packer").startup(
 
         -- typescript
         use "jose-elias-alvarez/typescript.nvim"
-        use("jose-elias-alvarez/null-ls.nvim")
+        use "jose-elias-alvarez/null-ls.nvim"
 
         -- prettier
-        use("MunifTanjim/prettier.nvim")
+        use "MunifTanjim/prettier.nvim"
 
         -- eslint
-        use("MunifTanjim/eslint.nvim")
+        use "MunifTanjim/eslint.nvim"
 
         -- plenary
         use "nvim-lua/plenary.nvim"
@@ -82,5 +82,23 @@ return require("packer").startup(
                 require("Comment").setup()
             end
         }
+
+	-- highlight todo, fixme, perf, ...
+	use {
+	  "folke/todo-comments.nvim",
+	  requires = "nvim-lua/plenary.nvim",
+	  config = function()
+	    require("todo-comments").setup {}
+	  end
+	}
+
+	-- indent currently broken? :(
+	use "lukas-reineke/indent-blankline.nvim"
+
+	-- power line
+	use {
+	  "nvim-lualine/lualine.nvim",
+	  requires = { "kyazdani42/nvim-web-devicons", opt = true }
+	}
     end
 )
