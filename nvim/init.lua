@@ -238,13 +238,13 @@ require("nvim-treesitter.configs").setup {
 require("telescope").setup(
     {
         defaults = {
-            file_ignore_patterns = {
-                "^./.git/",
-                "^./target/",
-                "LICENSE*"
-            }
-            -- layout_strategy = 'vertical',
-            -- layout_config = { height = 0.95, width = 0.95 },
+  --           file_ignore_patterns = {
+  --               "^./.git/",
+  --               "^./target/",
+  --               "LICENSE*",
+		-- "^./node_modules/"
+  --           },
+            layout_config = { height = 0.95, width = 0.95 },
         }
     }
 )
