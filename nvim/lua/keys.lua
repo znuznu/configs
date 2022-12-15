@@ -50,3 +50,8 @@ map('n', '<A-;>', '<Cmd>BufferNext<CR>', opts)
 
 -- nvim tree
 map("n", "<leader>nt", ":NvimTreeToggle<CR>")
+
+-- trouble
+vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
+  {silent = true, noremap = true}
+)

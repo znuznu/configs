@@ -103,5 +103,16 @@ return require("packer").startup(
 
 	-- tabs
 	use {"romgrk/barbar.nvim", wants = "nvim-web-devicons"}
+
+	-- git conflict resolver
+	use {'akinsho/git-conflict.nvim', tag = "v1.0.0", config = function()
+	  require('git-conflict').setup()
+	 end}
+
+	-- diagnostics
+	use {
+	  "folke/trouble.nvim",
+	  requires = "kyazdani42/nvim-web-devicons",
+	}
     end
 )

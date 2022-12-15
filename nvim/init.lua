@@ -230,6 +230,9 @@ require("nvim-treesitter.configs").setup {
     },
     autotag = {
         enable = true
+    },
+    live_filter = {
+	always_show_folders = false,
     }
 }
 
@@ -284,6 +287,18 @@ require('lualine').setup()
 require('bufferline').setup({
 	animation = false,
 })
+
+---------------------
+-- git conflict setup
+require('git-conflict').setup()
+
+--------------------
+-- trouble setup
+require("trouble").setup {
+	 position = "right",
+	 width = 50, 
+	 icons = true,
+}
 
 --------------
 -- Theme setup
