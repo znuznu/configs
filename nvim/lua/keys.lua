@@ -7,15 +7,13 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
-vim.cmd([[
-" " Moving line 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-j> :m '>+1<CR>gv=gv
-]])
+-- move current line
+map("n", "<A-j>", ":m .+1<CR>==")
+map("n", "<A-k>", ":m .-2<CR>==")
+
+-- move selected lines
+map("v", "<A-k>", ":m '<-2<CR>gv=gv")
+map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 
 -- code actions
 map("n", "ca", ":lua vim.lsp.buf.code_action()<CR>")
