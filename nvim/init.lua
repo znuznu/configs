@@ -287,6 +287,18 @@ require('gitsigns').setup {}
 -- Prisma ORM setup
 require('lspconfig').prismals.setup {}
 
+-- CSS setup
+require'lspconfig'.cssls.setup {}
+require'lspconfig'.cssmodules_ls.setup {}
+
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.cssls.setup {
+  capabilities = capabilities,
+}
+
 --------------
 -- Theme setup
 vim.cmd [[colorscheme moonfly]]
