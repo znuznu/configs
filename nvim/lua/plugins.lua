@@ -83,6 +83,12 @@ return require("packer").startup(
             end
         }
 
+	-- git integration
+	use {
+	  'lewis6991/gitsigns.nvim',
+	  tag = 'release' 
+	}
+
 	-- highlight todo, fixme, perf, ...
 	use {
 	  "folke/todo-comments.nvim",

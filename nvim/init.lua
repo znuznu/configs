@@ -300,6 +300,10 @@ require("trouble").setup {
 	 icons = true,
 }
 
+-----------------
+-- gitsigns setup
+require('gitsigns').setup()
+
 --------------
 -- Theme setup
 vim.cmd [[colorscheme moonfly]]
