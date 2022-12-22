@@ -28,3 +28,8 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 -- treesitter folding
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+
+-- Search --
+vim.opt.ignorecase = true -- Ignore case in search patterns
+vim.opt.smartcase = true -- Override ignorecase if search contains capitals
+vim.opt.incsearch = true 
