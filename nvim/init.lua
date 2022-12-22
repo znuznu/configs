@@ -18,7 +18,16 @@ require("mason").setup(
         }
     }
 )
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+	ensure_installed = {
+		'rust_analyzer',
+		'cssls',
+		'cssmodules_ls',
+		'eslint',
+		'tsserver',
+		'prismals',
+	}
+})
 
 -- Rust setup
 local rt = require("rust-tools")
@@ -288,8 +297,8 @@ require('gitsigns').setup {}
 require('lspconfig').prismals.setup {}
 
 -- CSS setup
-require'lspconfig'.cssls.setup {}
-require'lspconfig'.cssmodules_ls.setup {}
+require('lspconfig').cssls.setup {}
+require('lspconfig').cssmodules_ls.setup {}
 
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
