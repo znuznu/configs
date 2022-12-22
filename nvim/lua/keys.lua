@@ -12,8 +12,24 @@ map("n", "<A-j>", ":m .+1<CR>==")
 map("n", "<A-k>", ":m .-2<CR>==")
 
 -- move selected lines
-map("v", "<A-k>", ":m '<-2<CR>gv=gv")
-map("v", "<A-j>", ":m '>+1<CR>gv=gv")
+map("v", "<A-k>", ":m '<-2<CR>gv=gv") map("v", "<A-j>", ":m '>+1<CR>gv=gv")
+
+-- don't move cursor after a line merge
+map("n", "J", "mzJ`z")
+
+-- avoid blurp --
+
+-- stay in the middle while moving 
+map("n", "j", "jzz")
+map("n", "k", "kzz")
+-- stay in the middle while searching
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
+-- stay in the middle while navigating 
+map("n", "<C-d>", "<C-d>zz")
+map("n", "<C-u>", "<C-u>zz")
+-- stay in the middle while moving to matching opening/closing symbols
+map("n", "%", "%zz")
 
 -- code actions
 map("n", "ca", ":lua vim.lsp.buf.code_action()<CR>")
