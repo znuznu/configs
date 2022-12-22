@@ -1,13 +1,11 @@
 -- Leader setup
 vim.g.mapleader = ","
 
-----------
 -- imports
 require("plugins")
 require("options")
 require("keys")
 
---------------
 -- Mason setup
 require("mason").setup(
     {
@@ -22,7 +20,6 @@ require("mason").setup(
 )
 require("mason-lspconfig").setup()
 
--------------
 -- Rust setup
 local rt = require("rust-tools")
 
@@ -38,8 +35,6 @@ rt.setup(
         }
     }
 )
-
--------------------
 -- TypeScript setup
 require("typescript").setup(
     {
@@ -51,7 +46,6 @@ require("typescript").setup(
     }
 )
 
-----------------
 -- null_ls setup
 local null_ls = require("null-ls")
 
@@ -100,7 +94,6 @@ null_ls.setup(
     }
 )
 
------------------
 -- Prettier setup
 require("prettier").setup(
     {
@@ -122,7 +115,6 @@ require("prettier").setup(
     }
 )
 
----------------
 -- Eslint setup
 require("eslint").setup(
     {
@@ -146,7 +138,6 @@ require("eslint").setup(
     }
 )
 
----------------
 -- Indent setup
 
 require("indent_blankline").setup({
@@ -155,7 +146,6 @@ require("indent_blankline").setup({
     show_first_indent_level = true,
 })
 
---------------------------
 -- Completion plugin setup
 local cmp = require "cmp"
 cmp.setup(
@@ -213,7 +203,6 @@ cmp.setup(
     }
 )
 
---------------------------
 -- Treesitter plugin setup
 require("nvim-treesitter.configs").setup {
     ensure_installed = {"lua", "rust", "toml", "typescript", "json", "css", "html", "tsx"},
@@ -253,8 +242,7 @@ require("telescope").setup(
 )
 require("telescope").load_extension("fzf")
 
--------------
--- Tree setup
+-- Tree setup --
 
 -- disable netrw at the very start init.lua
 vim.g.loaded_netrw = 1
@@ -266,33 +254,26 @@ vim.opt.termguicolors = true
 require("nvim-tree").setup()
 require("nvim-web-devicons").setup()
 
-------------------
 -- Autopairs setup
 require("nvim-autopairs").setup {}
 
-----------------
 -- Comment setup
 require("Comment").setup()
 
-----------------------
 -- TODO comments setup
 require("todo-comments").setup()
 
-----------------
 -- Lualine setup
 require('lualine').setup()
 
----------------
--- barbar setup
+-- barbar setup --
 require('bufferline').setup({
 	animation = false,
 })
 
----------------------
 -- git conflict setup
 require('git-conflict').setup()
 
---------------------
 -- trouble setup
 require("trouble").setup {
 	 position = "right",
@@ -300,9 +281,11 @@ require("trouble").setup {
 	 icons = true,
 }
 
------------------
 -- gitsigns setup
-require('gitsigns').setup()
+require('gitsigns').setup {} 
+
+-- Prisma ORM setup
+require('lspconfig').prismals.setup {}
 
 --------------
 -- Theme setup

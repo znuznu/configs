@@ -3,7 +3,7 @@
 
 ripgrep: https://github.com/BurntSushi/ripgrep
 
-### Mason packages
+## Mason packages
 ```
-:MasonInstall rust-analyzer codelldb typescript-language-server prettierd eslint_d
+:MasonInstall rust-analyzer typescript-language-server prettierd eslint_d prisma-language-server
 ```
