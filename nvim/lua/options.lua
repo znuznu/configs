@@ -28,6 +28,7 @@ autocmd CursorHold * lua vim.diagnostic.open_float(nil, { focusable = false })
 -- treesitter folding
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "nvim_treesitter#foldexpr()"
+vim.cmd([[ autocmd BufReadPost,FileReadPost * normal zR ]]) -- avoid folds to be closed on any file that you open
 
 -- Search --
 vim.opt.ignorecase = true -- Ignore case in search patterns
