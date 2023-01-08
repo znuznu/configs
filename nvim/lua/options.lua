@@ -9,6 +9,10 @@ set noshowmode
 set splitright
 set autoindent
 set nowrap
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 ]])
 
 -- format on save
