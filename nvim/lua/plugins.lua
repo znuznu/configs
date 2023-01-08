@@ -83,42 +83,42 @@ return require("packer").startup(
             end
         }
 
-	-- git integration
-	use {
-	  'lewis6991/gitsigns.nvim',
-	  tag = 'release' 
-	}
+        -- git integration
+        use {
+          'lewis6991/gitsigns.nvim',
+          tag = 'release' 
+        }
 
-	-- highlight todo, fixme, perf, ...
-	use {
-	  "folke/todo-comments.nvim",
-	  requires = "nvim-lua/plenary.nvim",
-	  config = function()
-	    require("todo-comments").setup {}
-	  end
-	}
+        -- highlight todo, fixme, perf, ...
+        use {
+          "folke/todo-comments.nvim",
+          requires = "nvim-lua/plenary.nvim",
+          config = function()
+            require("todo-comments").setup {}
+          end
+        }
 
-	-- indent currently broken? :(
-	use "lukas-reineke/indent-blankline.nvim"
+        -- indent currently broken? :(
+        use "lukas-reineke/indent-blankline.nvim"
 
-	-- power line
-	use {
-	  "nvim-lualine/lualine.nvim",
-	  requires = { "kyazdani42/nvim-web-devicons", opt = true }
-	}
+        -- power line
+        use {
+          "nvim-lualine/lualine.nvim",
+          requires = { "kyazdani42/nvim-web-devicons", opt = true }
+        }
 
-	-- tabs
-	use {"romgrk/barbar.nvim", wants = "nvim-web-devicons"}
+        -- tabs
+        use {"romgrk/barbar.nvim", wants = "nvim-web-devicons"}
 
-	-- git conflict resolver
-	use {'akinsho/git-conflict.nvim', tag = "v1.0.0", config = function()
-	  require('git-conflict').setup()
-	 end}
+        -- git conflict resolver
+        use {'akinsho/git-conflict.nvim', tag = "v1.0.0", config = function()
+          require('git-conflict').setup()
+         end}
 
-	-- diagnostics
-	use {
-	  "folke/trouble.nvim",
-	  requires = "kyazdani42/nvim-web-devicons",
-	}
+        -- diagnostics
+        use {
+          "folke/trouble.nvim",
+          requires = "kyazdani42/nvim-web-devicons",
+        }
     end
 )
