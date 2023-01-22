@@ -9,20 +9,20 @@ set noshowmode
 set splitright
 set autoindent
 set nowrap
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set expandtab
 set list
 ]])
 
 -- format on save
--- vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
+vim.cmd [[autocmd BufWritePre * lua vim.lsp.buf.formatting_sync()]]
 
 -- completion
 -- :help completeopt
-vim.opt.completeopt = {"menuone", "noselect", "noinsert"}
-vim.opt.shortmess = vim.opt.shortmess + {c = true}
+vim.opt.completeopt = { "menuone", "noselect", "noinsert" }
+vim.opt.shortmess = vim.opt.shortmess + { c = true }
 vim.api.nvim_set_option("updatetime", 300)
 
 vim.cmd([[
@@ -38,4 +38,4 @@ vim.cmd([[ autocmd BufReadPost,FileReadPost * normal zR ]]) -- avoid folds to be
 -- Search --
 vim.opt.ignorecase = true -- Ignore case in search patterns
 vim.opt.smartcase = true -- Override ignorecase if search contains capitals
-vim.opt.incsearch = true 
+vim.opt.incsearch = true
