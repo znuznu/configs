@@ -120,5 +120,7 @@ return require("packer").startup(
       "folke/trouble.nvim",
       requires = "kyazdani42/nvim-web-devicons",
     }
+
+    use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
   end
 )

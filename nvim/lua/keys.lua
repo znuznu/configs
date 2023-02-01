@@ -70,3 +70,7 @@ map("n", "<leader>nt", ":NvimTreeToggle<CR>")
 vim.keymap.set("n", "<leader>xx", "<cmd>TroubleToggle<cr>",
   { silent = true, noremap = true }
 )
+
+-- Using ufo provider remap `zR` and `zM`
+vim.keymap.set('n', 'zO', require('ufo').openAllFolds)
+vim.keymap.set('n', 'zC', require('ufo').closeAllFolds)
