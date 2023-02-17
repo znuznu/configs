@@ -14,6 +14,9 @@ return require("packer").startup(
     -- rust
     use "simrat39/rust-tools.nvim"
 
+    -- java
+    use 'mfussenegger/nvim-jdtls'
+
     -- typescript
     use "jose-elias-alvarez/typescript.nvim"
     use "jose-elias-alvarez/null-ls.nvim"
