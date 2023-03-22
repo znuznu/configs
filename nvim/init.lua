@@ -1,3 +1,7 @@
+-- disable netrw at the very start init.lua
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Leader setup
 vim.g.mapleader = ","
 
@@ -27,7 +31,7 @@ require("mason-lspconfig").setup({
     'eslint',
     'tsserver',
     'prismals',
-    'sumneko_lua'
+    'lua_ls'
   }
 })
 
@@ -251,15 +255,27 @@ require("telescope").load_extension("fzf")
 
 -- Tree setup --
 
--- disable netrw at the very start init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- set termguicolors to enable highlight groups
 vim.opt.termguicolors = true
 
 require("nvim-tree").setup()
 require("nvim-web-devicons").setup()
+
+local function open_nvim_tree(data)
+  -- buffer is a directory
+  local directory = vim.fn.isdirectory(data.file) == 1
+
+  if not directory then
+    return
+  end
+
+  -- change to the directory
+  vim.cmd.cd(data.file)
+
+  -- open the tree
+  require("nvim-tree.api").tree.open()
+end
+vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 -- Autopairs setup
 require("nvim-autopairs").setup {}
@@ -298,7 +314,7 @@ require('lspconfig').prismals.setup {}
 require('lspconfig').cssls.setup {}
 require('lspconfig').cssmodules_ls.setup {}
 
-require('lspconfig').sumneko_lua.setup {
+require('lspconfig').lua_ls.setup {
   settings = {
     format = {
       enable = true,
