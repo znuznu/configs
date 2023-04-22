@@ -1,9 +1,18 @@
-## Neovim
-### Prerequisites
+# Neovim configuration
 
-ripgrep: https://github.com/BurntSushi/ripgrep
+Complete Neovim configuration best suited for TypeScript, React, Rust and Lua.
 
-## Mason packages
-```
-:MasonInstall rust-analyzer typescript-language-server prettierd eslint_d prisma-language-server lua-language-server
-```
+It is highly inspired by the one from [JoosepAlviste](https://github.com/JoosepAlviste/dotfiles).
+
+## Requirements
+
+* [Neovim](https://neovim.io/) >= 0.9
+* [ripgrep](https://github.com/BurntSushi/ripgrep)
+* a Nerd Font (optional)
+
+## Installation
+
+Inside Neovim:
+* Run `MasonInstallAll`
+* Run `Lazy` and `checkhealth: lazy` to ensure everything is OK
+* Enjoy
