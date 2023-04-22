@@ -2,11 +2,13 @@ local map = require('znu.utils').map
 
 local opt = vim.opt
 
+local indent_size = 2;
+
 -- Indentation
 opt.expandtab = true
-opt.shiftwidth = 2
-opt.tabstop = 2
-opt.softtabstop = 2
+opt.shiftwidth = indent_size
+opt.tabstop = indent_size
+opt.softtabstop = indent_size
 
 -- Buffers
 opt.hidden = true -- Buffer switching without saving
@@ -36,7 +38,7 @@ opt.number = true
 opt.relativenumber = true
 opt.signcolumn = 'yes'
 opt.statuscolumn =
-  "%C%=%4{&nu && v:virtnum <= 0 ? (&rnu ? (v:lnum == line('.') ? v:lnum . ' ' : v:relnum) : v:lnum) : ''}%=%s"
+"%C%=%4{&nu && v:virtnum <= 0 ? (&rnu ? (v:lnum == line('.') ? v:lnum . ' ' : v:relnum) : v:lnum) : ''}%=%s"
 opt.showmode = false
 opt.cmdheight = 0
 
