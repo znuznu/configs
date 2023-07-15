@@ -191,6 +191,7 @@ require('lazy').setup({
 
       local ensure_installed = {
         -- Language servers
+        'astro-language-server',
         'css-lsp',
         'dockerfile-language-server',
         'graphql-language-service-cli',
@@ -364,8 +365,8 @@ require('lazy').setup({
       require 'znu.plugins.neoterm'
     end,
     keys = {
-      { '<c-q>', [[:Ttoggle<cr>]], silent = true },
-      { '<c-q>', [[<c-\><c-n>:Ttoggle<cr>]], mode = 't', silent = true },
+      { '<c-q>', [[:Ttoggle<cr>]],           silent = true },
+      { '<c-q>', [[<c-\><c-n>:Ttoggle<cr>]], mode = 't',   silent = true },
     },
   },
   {
