@@ -27,4 +27,5 @@ require('nvim-tree').setup {
   filters = {
     custom = { '.git', '.DS_Store' },
   },
+  update_focused_file = { enable = true }
 }
