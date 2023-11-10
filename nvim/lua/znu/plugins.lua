@@ -193,6 +193,7 @@ require('lazy').setup({
         -- Language servers
         'astro-language-server',
         'css-lsp',
+        'cssmodules_ls',
         'dockerfile-language-server',
         'graphql-language-service-cli',
         'json-lsp',
@@ -227,6 +228,7 @@ require('lazy').setup({
     config = function()
       require 'znu.plugins.lsp'
       require 'znu.plugins.lsp.css_ls'
+      require 'znu.plugins.lsp.cssmodules_ls'
       require 'znu.plugins.lsp.docker_ls'
       require 'znu.plugins.lsp.graphql_ls'
       require 'znu.plugins.lsp.json_ls'
