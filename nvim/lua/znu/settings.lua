@@ -15,7 +15,7 @@ opt.hidden = true -- Buffer switching without saving
 
 -- Search
 opt.ignorecase = true -- Case insensitive search
-opt.smartcase = true -- But sensitive if includes capital letter
+opt.smartcase = true  -- But sensitive if includes capital letter
 opt.grepprg = 'rg --ignore-case --vimgrep'
 opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
@@ -60,22 +60,22 @@ opt.fillchars = {
   foldclose = '',
 }
 
-opt.cursorline = true -- Highlight current line
+opt.cursorline = true         -- Highlight current line
 opt.colorcolumn = { 81, 121 } -- Highlight columns
-opt.showmatch = true -- Highlight matching parenthesis, etc.
+opt.showmatch = true          -- Highlight matching parenthesis, etc.
 
-opt.showmode = false -- Do not show mode in command line
+opt.showmode = false          -- Do not show mode in command line
 
 -- UX
 opt.confirm = true
-opt.updatetime = 100 -- Trigger cursorhold faster
+opt.updatetime = 100       -- Trigger cursorhold faster
 opt.inccommand = 'nosplit' -- Show preview of ex commands
 
-opt.splitright = true -- Open new split to the right
-opt.splitbelow = true -- Open new split below
+opt.splitright = true      -- Open new split to the right
+opt.splitbelow = true      -- Open new split below
 opt.splitkeep = 'screen'
 opt.whichwrap = opt.whichwrap + 'h,l,<,>,[,]'
-opt.joinspaces = false -- Prevent inserting two spaces with J
+opt.joinspaces = false                      -- Prevent inserting two spaces with J
 
 opt.completeopt = { 'menuone', 'noselect' } -- Completion menu
 opt.pumheight = 13
@@ -106,8 +106,8 @@ opt.shortmess:append {
 opt.clipboard = { 'unnamed', 'unnamedplus' }
 
 -- Navigation
-opt.scrolloff = 5 -- Lines to scroll when cursor leaves screen
-opt.sidescrolloff = 3 -- Lines to scroll horizontally
+opt.scrolloff = 5                                 -- Lines to scroll when cursor leaves screen
+opt.sidescrolloff = 3                             -- Lines to scroll horizontally
 opt.suffixesadd = { '.md', '.js', '.ts', '.tsx' } -- File extensions not required when opening with `gf`
 
 -- Undo & History
@@ -116,5 +116,8 @@ opt.undolevels = 1000
 opt.undoreload = 10000
 opt.shada = { '!', "'1000", '<50', 's10', 'h' } -- Increase the shadafile size so that history is longer
 
--- Sesssions
+-- Sessions
 opt.sessionoptions:remove { 'buffers', 'folds' }
+
+-- Skip backwards compatibility routines and speed up loading
+vim.g.skip_ts_context_commentstring_module = true
