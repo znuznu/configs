@@ -205,7 +205,7 @@ require('lazy').setup({
         'dockerfile-language-server',
         'graphql-language-service-cli',
         'json-lsp',
-        'typescript-language-server',
+        -- 'typescript-language-server',
         'yaml-language-server',
         'lua-language-server',
         'rust-analyzer',
@@ -220,8 +220,8 @@ require('lazy').setup({
         'stylua',
 
         -- DAP servers
-        'node-debug2-adapter',
-        'firefox-debug-adapter',
+        -- 'node-debug2-adapter',
+        -- 'firefox-debug-adapter',
       }
 
       vim.api.nvim_create_user_command('MasonInstallAll', function()
@@ -257,7 +257,7 @@ require('lazy').setup({
           require 'znu.plugins.lsp.null_ls'
         end,
       },
-      'jose-elias-alvarez/typescript.nvim',
+      'pmizio/typescript-tools.nvim',
       'simrat39/rust-tools.nvim',
       'folke/neodev.nvim',
     },
@@ -282,6 +282,7 @@ require('lazy').setup({
     config = function()
       require 'znu.plugins.luasnip'
     end,
+    build = "make install_jsregexp"
   },
 
   -- Debugging
