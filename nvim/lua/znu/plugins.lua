@@ -102,7 +102,13 @@ require('lazy').setup({
       }
     end,
   },
-
+  -- Diagnostics
+  {
+    'folke/trouble.nvim',
+    dependencies = {
+      'nvim-tree/nvim-web-devicons'
+    },
+  },
   -- UI
   {
     'folke/noice.nvim',

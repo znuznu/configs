@@ -1,6 +1,7 @@
 local actions = require 'telescope.actions'
 local builtin = require 'telescope.builtin'
 local layout_strategies = require 'telescope.pickers.layout_strategies'
+local trouble = require 'trouble.providers.telescope'
 
 local map = require('znu.utils').map
 local custom_pickers = require 'znu.plugins.telescope_custom_pickers'
@@ -47,7 +48,9 @@ require('telescope').setup {
         ['<C-w>'] = function()
           vim.api.nvim_input '<c-s-w>'
         end,
+        ['<c-t>'] = trouble.open_with_trouble
       },
+      n = { ['<c-t>'] = trouble.open_with_trouble },
     },
     path_display = function(_, path)
       local filename = path:gsub(vim.pesc(vim.loop.cwd()) .. '/', ''):gsub(vim.pesc(vim.fn.expand '$HOME'), '~')
