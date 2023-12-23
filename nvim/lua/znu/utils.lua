@@ -59,13 +59,13 @@ function M.reload()
   vim.cmd.LspStop()
 
   -- Stop eslint_d
-  vim.fn.execute 'silent !pkill -9 eslint_d'
+  vim.fn.execute('silent !pkill -9 eslint_d')
 
   -- Unload all already loaded modules
   unload_all_modules()
 
   -- Source init.lua
-  vim.cmd.luafile '$MYVIMRC'
+  vim.cmd.luafile('$MYVIMRC')
 end
 
 -- Restart Vim without having to close and run again
@@ -74,11 +74,11 @@ function M.restart()
   M.reload()
 
   -- Manually run VimEnter autocmd to emulate a new run of Vim
-  vim.cmd.doautocmd 'VimEnter'
+  vim.cmd.doautocmd('VimEnter')
 end
 
 function M.read_json_file(filename)
-  local Path = require 'plenary.path'
+  local Path = require('plenary.path')
 
   local path = Path:new(filename)
   if not path:exists() then
@@ -92,7 +92,7 @@ function M.read_json_file(filename)
 end
 
 function M.read_package_json()
-  return M.read_json_file 'package.json'
+  return M.read_json_file('package.json')
 end
 
 ---Check if the given NPM package is installed in the current project.

@@ -1,8 +1,8 @@
-local finders = require 'telescope.finders'
-local pickers = require 'telescope.pickers'
-local make_entry = require 'telescope.make_entry'
+local finders = require('telescope.finders')
+local pickers = require('telescope.pickers')
+local make_entry = require('telescope.make_entry')
 local conf = require('telescope.config').values
-local builtin = require 'telescope.builtin'
+local builtin = require('telescope.builtin')
 
 local buf_map = require('znu.utils').buf_map
 
@@ -13,7 +13,7 @@ vim.fn.sign_define('DiagnosticSignInfo', { text = '' })
 vim.fn.sign_define('DiagnosticSignHint', { text = '' })
 
 -- Configure diagnostics displaying
-vim.diagnostic.config {
+vim.diagnostic.config({
   virtual_text = false,
   float = {
     border = 'rounded',
@@ -39,7 +39,7 @@ vim.diagnostic.config {
     severity_sort = true,
     close_events = { 'CursorMoved', 'InsertEnter' },
   },
-}
+})
 
 -- Use FZF to find references
 -- vim.lsp.handlers['textDocument/references'] = require('znu.plugins.fzf.functions').lsp_references_handler
@@ -60,7 +60,7 @@ vim.lsp.handlers['textDocument/formatting'] = function(err, result, ctx, _)
     vim.lsp.util.apply_text_edits(result, ctx.bufnr, client.offset_encoding)
     vim.fn.winrestview(view)
     if ctx.bufnr == vim.api.nvim_get_current_buf() or not ctx.bufnr then
-      vim.api.nvim_command 'noautocmd :update'
+      vim.api.nvim_command('noautocmd :update')
     end
   end
 end
@@ -98,10 +98,10 @@ function M.on_attach(client, bufnr)
   -- Highlight symbol references on hover
   if client.server_capabilities.documentHighlightProvider then
     vim.api.nvim_create_augroup('LspDocumentHighlight', { clear = false })
-    vim.api.nvim_clear_autocmds {
+    vim.api.nvim_clear_autocmds({
       buffer = bufnr,
       group = 'LspDocumentHighlight',
-    }
+    })
     vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
       group = 'LspDocumentHighlight',
       buffer = bufnr,
@@ -116,17 +116,19 @@ function M.on_attach(client, bufnr)
 
   -- Autoformatting
   local formatting_disabled_ls = { 'tsserver' }
-  if client.supports_method 'textDocument/formatting' and not vim.tbl_contains(formatting_disabled_ls, client.name) then
-    vim.api.nvim_clear_autocmds { group = formatting_augroup, buffer = bufnr }
+  if
+    client.supports_method('textDocument/formatting') and not vim.tbl_contains(formatting_disabled_ls, client.name)
+  then
+    vim.api.nvim_clear_autocmds({ group = formatting_augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd('BufWritePre', {
       group = formatting_augroup,
       buffer = bufnr,
       callback = function()
-        vim.lsp.buf.format {
+        vim.lsp.buf.format({
           filter = function(buf_client)
             return not vim.tbl_contains(formatting_disabled_ls, buf_client.name)
           end,
-        }
+        })
       end,
     })
   end
@@ -174,12 +176,12 @@ local function filter_out_same_location_from_lsp_items(results)
     local to = item.targetSelectionRange
 
     return not (
-        from
-        and from.start.character == to.start.character
-        and from.start.line == to.start.line
-        and from['end'].character == to['end'].character
-        and from['end'].line == to['end'].line
-        )
+      from
+      and from.start.character == to.start.character
+      and from.start.line == to.start.line
+      and from['end'].character == to['end'].character
+      and from['end'].line == to['end'].line
+    )
   end, results)
 end
 
@@ -223,16 +225,16 @@ local function list_or_jump(action, title, opts)
     else
       local locations = vim.lsp.util.locations_to_items(flattened_results, offset_encoding)
       pickers
-          .new(opts, {
-            prompt_title = title,
-            finder = finders.new_table {
-              results = locations,
-              entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
-            },
-            previewer = conf.qflist_previewer(opts),
-            sorter = conf.generic_sorter(opts),
-          })
-          :find()
+        .new(opts, {
+          prompt_title = title,
+          finder = finders.new_table({
+            results = locations,
+            entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
+          }),
+          previewer = conf.qflist_previewer(opts),
+          sorter = conf.generic_sorter(opts),
+        })
+        :find()
     end
   end)
 end
@@ -248,7 +250,7 @@ vim.lsp.handlers['textDocument/rename'] = function(err, result, ctx)
 
   if result and result.changes then
     local new_name = ''
-    local old_name = vim.fn.expand '<cword>'
+    local old_name = vim.fn.expand('<cword>')
 
     local msg = ''
     for f, c in pairs(result.changes) do
@@ -267,10 +269,10 @@ end
 
 vim.lsp.buf.rename = {
   float = function()
-    local curr_name = vim.fn.expand '<cword>'
+    local curr_name = vim.fn.expand('<cword>')
     local tshl = require('nvim-treesitter-playground.hl-info').get_treesitter_hl()
     if tshl and #tshl > 0 then
-      local ind = tshl[#tshl]:match '^.*()%*%*.*%*%*'
+      local ind = tshl[#tshl]:match('^.*()%*%*.*%*%*')
       tshl = tshl[#tshl]:sub(ind + 2, -3)
     end
 

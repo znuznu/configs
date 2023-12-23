@@ -1,6 +1,6 @@
-local autopairs = require 'nvim-autopairs'
-local Rule = require 'nvim-autopairs.rule'
-local ts_conds = require 'nvim-autopairs.ts-conds'
+local autopairs = require('nvim-autopairs')
+local Rule = require('nvim-autopairs.rule')
+local ts_conds = require('nvim-autopairs.ts-conds')
 
 local map = require('znu.utils').map
 
@@ -8,14 +8,14 @@ local function confirm()
   return autopairs.check_break_line_char()
 end
 
-autopairs.setup {
+autopairs.setup({
   check_ts = true,
   enable_moveright = true,
-}
+})
 
 -- Typing space when (|) -> ( | )
 local brackets = { { '(', ')' }, { '[', ']' }, { '{', '}' } }
-autopairs.add_rules {
+autopairs.add_rules({
   Rule(' ', ' '):with_pair(function(opts)
     local pair = opts.line:sub(opts.col - 1, opts.col)
     return vim.tbl_contains({
@@ -24,9 +24,9 @@ autopairs.add_rules {
       brackets[3][1] .. brackets[3][2],
     }, pair)
   end),
-}
+})
 for _, bracket in pairs(brackets) do
-  autopairs.add_rules {
+  autopairs.add_rules({
     Rule(bracket[1] .. ' ', ' ' .. bracket[2])
       :with_pair(function()
         return false
@@ -35,10 +35,10 @@ for _, bracket in pairs(brackets) do
         return opts.prev_char:match('.%' .. bracket[2]) ~= nil
       end)
       :use_key(bracket[2]),
-  }
+  })
 end
 
-autopairs.add_rules {
+autopairs.add_rules({
 
   -- Typing = when () -> () => {|}
   Rule('%(.*%)%s*%=$', '> {}', { 'typescript', 'typescriptreact', 'javascript' })
@@ -49,6 +49,6 @@ autopairs.add_rules {
   Rule('then', 'end', 'lua'):end_wise(function(opts)
     return string.match(opts.line, '^%s*if') ~= nil
   end),
-}
+})
 
 map('i', '<cr>', confirm, { expr = true, noremap = true })

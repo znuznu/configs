@@ -1,5 +1,5 @@
 -- https://github.com/redhat-developer/yaml-language-server
-require('lspconfig').yamlls.setup {
+require('lspconfig').yamlls.setup({
   on_attach = require('znu.plugins.lsp').on_attach,
   capabilities = require('znu.plugins.lsp').capabilities,
   settings = {
@@ -13,4 +13,4 @@ require('lspconfig').yamlls.setup {
       },
     },
   },
-}
+})

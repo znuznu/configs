@@ -1,24 +1,24 @@
 -- Automatically install packer.nvim
-local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system {
+  vim.fn.system({
     'git',
     'clone',
     '--filter=blob:none',
     '--single-branch',
     'https://github.com/folke/lazy.nvim.git',
     lazypath,
-  }
+  })
 end
 vim.opt.runtimepath:prepend(lazypath)
 
 require('lazy').setup({
   -- Colorscheme
   {
-    "bluz71/vim-moonfly-colors",
-    name = "moonfly",
+    'bluz71/vim-moonfly-colors',
+    name = 'moonfly',
     lazy = false,
-    priority = 1000
+    priority = 1000,
   },
 
   -- Core utilities
@@ -27,13 +27,13 @@ require('lazy').setup({
     -- Automatic sessions
     'rmagatti/auto-session',
     config = function()
-      require 'znu.plugins.auto_session'
+      require('znu.plugins.auto_session')
     end,
   },
   {
     'rcarriga/nvim-notify',
     config = function()
-      require 'znu.plugins.notify'
+      require('znu.plugins.notify')
     end,
     event = 'VeryLazy',
   },
@@ -54,7 +54,7 @@ require('lazy').setup({
     'kevinhwang91/nvim-ufo',
     dependencies = { 'kevinhwang91/promise-async' },
     config = function()
-      require 'znu.plugins.ufo'
+      require('znu.plugins.ufo')
     end,
   },
 
@@ -63,7 +63,7 @@ require('lazy').setup({
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     config = function()
-      require 'znu.plugins.autopairs'
+      require('znu.plugins.autopairs')
     end,
   },
   {
@@ -72,9 +72,9 @@ require('lazy').setup({
       { 'gc', mode = { 'n', 'v' }, 'gcc' },
     },
     config = function()
-      require('Comment').setup {
+      require('Comment').setup({
         pre_hook = require('ts_context_commentstring.integrations.comment_nvim').create_pre_hook(),
-      }
+      })
     end,
   },
   {
@@ -93,27 +93,27 @@ require('lazy').setup({
     branch = 'feature/skip-lines-when-scrolling',
     event = 'BufEnter',
     config = function()
-      require('cinnamon').setup {
+      require('cinnamon').setup({
         extra_keymaps = true,
         default_delay = 2,
         max_length = 60,
         hide_cursor = true,
         scroll_limit = -1,
-      }
+      })
     end,
   },
   -- Diagnostics
   {
     'folke/trouble.nvim',
     dependencies = {
-      'nvim-tree/nvim-web-devicons'
+      'nvim-tree/nvim-web-devicons',
     },
   },
   -- UI
   {
     'folke/noice.nvim',
     config = function()
-      require 'znu.plugins.noice'
+      require('znu.plugins.noice')
     end,
     dependencies = {
       'MunifTanjim/nui.nvim',
@@ -122,14 +122,14 @@ require('lazy').setup({
   {
     'b0o/incline.nvim',
     config = function()
-      require 'znu.plugins.incline'
+      require('znu.plugins.incline')
     end,
   },
   {
     'lukas-reineke/indent-blankline.nvim',
     config = function()
-      require 'znu.plugins.indent'
-    end
+      require('znu.plugins.indent')
+    end,
   },
 
   -- Navigation
@@ -138,7 +138,7 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     cmd = 'Telescope',
     config = function()
-      require 'znu.plugins.telescope'
+      require('znu.plugins.telescope')
     end,
     dependencies = {
       'nvim-lua/plenary.nvim', -- Useful Lua utilities
@@ -151,13 +151,13 @@ require('lazy').setup({
   {
     'tamago324/lir.nvim', -- File explorer
     config = function()
-      require 'znu.plugins.lir'
+      require('znu.plugins.lir')
     end,
   },
   {
     'tpope/vim-projectionist', -- Alternative files
     config = function()
-      require 'znu.plugins.projectionist'
+      require('znu.plugins.projectionist')
     end,
   },
   {
@@ -169,7 +169,7 @@ require('lazy').setup({
   {
     'nvim-tree/nvim-tree.lua',
     config = function()
-      require 'znu.plugins.tree'
+      require('znu.plugins.tree')
     end,
   },
 
@@ -178,7 +178,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     config = function()
-      require 'znu.plugins.treesitter'
+      require('znu.plugins.treesitter')
     end,
     dependencies = {
       'windwp/nvim-ts-autotag', -- Automatically end & rename tags
@@ -190,7 +190,7 @@ require('lazy').setup({
   {
     'nvim-tree/nvim-web-devicons',
     config = function()
-      require 'znu.plugins.web_devicons'
+      require('znu.plugins.web_devicons')
     end,
   },
 
@@ -211,7 +211,6 @@ require('lazy').setup({
         'dockerfile-language-server',
         'graphql-language-service-cli',
         'json-lsp',
-        -- 'typescript-language-server',
         'yaml-language-server',
         'lua-language-server',
         'rust-analyzer',
@@ -223,11 +222,8 @@ require('lazy').setup({
 
         -- Linting and formatting
         'eslint_d',
+        'prettier',
         'stylua',
-
-        -- DAP servers
-        -- 'node-debug2-adapter',
-        -- 'firefox-debug-adapter',
       }
 
       vim.api.nvim_create_user_command('MasonInstallAll', function()
@@ -240,29 +236,22 @@ require('lazy').setup({
   {
     'neovim/nvim-lspconfig', -- Built-in LSP configurations
     config = function()
-      require 'znu.plugins.lsp'
-      require 'znu.plugins.lsp.css_ls'
-      require 'znu.plugins.lsp.cssmodules_ls'
-      require 'znu.plugins.lsp.docker_ls'
-      require 'znu.plugins.lsp.graphql_ls'
-      require 'znu.plugins.lsp.json_ls'
-      require 'znu.plugins.lsp.tsserver_ls'
-      require 'znu.plugins.lsp.yaml_ls'
-      require 'znu.plugins.lsp.lua_ls'
-      require 'znu.plugins.lsp.haskell_ls'
-      require 'znu.plugins.lsp.eslint_ls'
-      require 'znu.plugins.lsp.prisma_ls'
-      require 'znu.plugins.lsp.html_ls'
-      require 'znu.plugins.lsp.tailwind_ls'
-      require 'znu.plugins.lsp.rust_ls'
+      require('znu.plugins.lsp')
+      require('znu.plugins.lsp.css_ls')
+      require('znu.plugins.lsp.cssmodules_ls')
+      require('znu.plugins.lsp.docker_ls')
+      require('znu.plugins.lsp.graphql_ls')
+      require('znu.plugins.lsp.json_ls')
+      require('znu.plugins.lsp.tsserver_ls')
+      require('znu.plugins.lsp.yaml_ls')
+      require('znu.plugins.lsp.lua_ls')
+      require('znu.plugins.lsp.haskell_ls')
+      require('znu.plugins.lsp.prisma_ls')
+      require('znu.plugins.lsp.html_ls')
+      require('znu.plugins.lsp.tailwind_ls')
+      require('znu.plugins.lsp.rust_ls')
     end,
     dependencies = {
-      {
-        'jose-elias-alvarez/null-ls.nvim',
-        config = function()
-          require 'znu.plugins.lsp.null_ls'
-        end,
-      },
       'pmizio/typescript-tools.nvim',
       'simrat39/rust-tools.nvim',
       'folke/neodev.nvim',
@@ -279,63 +268,44 @@ require('lazy').setup({
       'petertriho/cmp-git',
     },
     config = function()
-      require 'znu.plugins.cmp'
+      require('znu.plugins.cmp')
     end,
   },
   {
     'L3MON4D3/LuaSnip',
     event = 'InsertEnter',
     config = function()
-      require 'znu.plugins.luasnip'
+      require('znu.plugins.luasnip')
     end,
-    build = "make install_jsregexp"
-  },
-
-  -- Debugging
-  {
-    'rcarriga/nvim-dap-ui',
-    dependencies = { 'mfussenegger/nvim-dap' },
-    keys = {
-      '<localleader>dc',
-      '<localleader>do',
-      '<localleader>di',
-      '<localleader>dt',
-      '<localleader>db',
-      '<localleader>dB',
-      '<localleader>dr',
-      '<localleader>du',
-    },
-    config = function()
-      require 'znu.plugins.dap'
-    end,
+    build = 'make install_jsregexp',
   },
 
   -- Web dev
   {
     'NvChad/nvim-colorizer.lua', -- Preview colors
     config = function()
-      require('colorizer').setup {
+      require('colorizer').setup({
         filetypes = { '*', '!packer' },
         user_default_options = {
           tailwind = 'lsp',
           names = false,
           sass = { enable = true, parsers = { css = true } },
         },
-      }
+      })
     end,
   },
 
   {
     'axelvc/template-string.nvim',
     config = function()
-      require('template-string').setup {
+      require('template-string').setup({
         filetypes = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
         remove_template_string = true,
         restore_quotes = {
           normal = [[']],
           jsx = [["]],
         },
-      }
+      })
     end,
     event = 'InsertEnter',
     ft = { 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' },
@@ -349,7 +319,7 @@ require('lazy').setup({
   {
     'lewis6991/gitsigns.nvim', -- Git status signs in the gutter
     config = function()
-      require 'znu.plugins.gitsigns'
+      require('znu.plugins.gitsigns')
     end,
   },
 
@@ -359,7 +329,7 @@ require('lazy').setup({
     dependencies = { 'neovim/nvim-lspconfig' },
     ft = 'markdown',
     config = function()
-      require 'znu.plugins.zk'
+      require('znu.plugins.zk')
     end,
   },
 
@@ -367,7 +337,9 @@ require('lazy').setup({
   {
     'romgrk/barbar.nvim',
     dependencies = 'nvim-tree/nvim-web-devicons',
-    init = function() vim.g.barbar_auto_setup = false end,
+    init = function()
+      vim.g.barbar_auto_setup = false
+    end,
     opts = {
       animation = false,
     },
@@ -379,11 +351,11 @@ require('lazy').setup({
     -- Use Ctrl+Q to toggle a terminal
     'kassio/neoterm',
     config = function()
-      require 'znu.plugins.neoterm'
+      require('znu.plugins.neoterm')
     end,
     keys = {
-      { '<c-q>', [[:Ttoggle<cr>]],           silent = true },
-      { '<c-q>', [[<c-\><c-n>:Ttoggle<cr>]], mode = 't',   silent = true },
+      { '<c-q>', [[:Ttoggle<cr>]], silent = true },
+      { '<c-q>', [[<c-\><c-n>:Ttoggle<cr>]], mode = 't', silent = true },
     },
   },
   {
@@ -397,7 +369,32 @@ require('lazy').setup({
     },
     dependencies = { 'KaiSpencer/neotest-vitest', 'haydenmeade/neotest-jest' },
     config = function()
-      require 'znu.plugins.neotest'
+      require('znu.plugins.neotest')
+    end,
+  },
+
+  -- Linting & formatting
+  {
+    'stevearc/conform.nvim',
+    opts = {},
+    config = function()
+      require('znu.plugins.conform')
+    end,
+  },
+  {
+    'mfussenegger/nvim-lint',
+    ft = { 'typescript', 'typescriptreact', 'javascript' },
+    config = function()
+      require('lint').linters_by_ft = {
+        typescript = { 'eslint_d' },
+        typescriptreact = { 'eslint_d' },
+        javascript = { 'eslint_d' },
+      }
+      vim.api.nvim_create_autocmd({ 'BufWritePost' }, {
+        callback = function()
+          require('lint').try_lint()
+        end,
+      })
     end,
   },
 }, {

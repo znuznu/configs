@@ -1,4 +1,4 @@
-require('incline').setup {
+require('incline').setup({
   window = {
     margin = {
       vertical = {
@@ -17,4 +17,4 @@ require('incline').setup {
       { filename },
     }
   end,
-}
+})

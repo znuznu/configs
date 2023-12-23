@@ -1,4 +1,4 @@
-local ls = require 'luasnip'
+local ls = require('luasnip')
 
 local fmt = require('luasnip.extras.fmt').fmt
 local s = ls.snippet
@@ -66,7 +66,7 @@ if ({}) {{
     'indexport',
     fmt([[export {{ default }} from './{}';]], {
       d(1, function()
-        local folder_name = vim.fn.expand '%:h:t'
+        local folder_name = vim.fn.expand('%:h:t')
         return sn(nil, {
           c(1, { i(nil, folder_name), i(nil, folder_name .. '.vue') }),
         })
@@ -89,12 +89,8 @@ describe('{}', () => {{
             vim.pesc(vim.loop.cwd() .. '/'),
             ''
           )
-          local filename_without_junk, _ = filename
-            :gsub('^test/', '')
-            :gsub('^src/', '')
-            :gsub('.spec$', '')
-            :gsub('.test$', '')
-            :gsub('__tests__/', '')
+          local filename_without_junk, _ =
+            filename:gsub('^test/', ''):gsub('^src/', ''):gsub('.spec$', ''):gsub('.test$', ''):gsub('__tests__/', '')
 
           return sn(nil, {
             i(1, filename_without_junk),
@@ -114,7 +110,7 @@ it('{}', {}() => {{
   {}
 }});
 ]],
-      { i(1), c(2, { t 'async ', t '' }), i(3) }
+      { i(1), c(2, { t('async '), t('') }), i(3) }
     )
   ),
 

@@ -1,5 +1,5 @@
 require('nvim-treesitter.install').compilers = { 'gcc' }
-require('nvim-treesitter.configs').setup {
+require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true,
     use_languagetree = true,
@@ -10,7 +10,7 @@ require('nvim-treesitter.configs').setup {
   playground = {
     enable = false,
     disable = {},
-    updatetime = 25,         -- Debounced time for highlighting nodes in the playground from source code
+    updatetime = 25, -- Debounced time for highlighting nodes in the playground from source code
     persist_queries = false, -- Whether the query persists across vim sessions
   },
   autotag = {
@@ -46,6 +46,6 @@ require('nvim-treesitter.configs').setup {
     'svelte',
     'sql',
     'regex',
-    'rust'
+    'rust',
   },
-}
+})

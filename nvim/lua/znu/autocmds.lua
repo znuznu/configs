@@ -4,7 +4,7 @@ local group = vim.api.nvim_create_augroup('Setup', {})
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = group,
   callback = function()
-    require('vim.highlight').on_yank { higroup = 'Substitute', timeout = 200 }
+    require('vim.highlight').on_yank({ higroup = 'Substitute', timeout = 200 })
   end,
 })
 
@@ -16,7 +16,7 @@ vim.api.nvim_create_autocmd({ 'InsertEnter', 'WinLeave' }, { command = 'set nocu
 vim.api.nvim_create_autocmd('WinEnter', {
   group = group,
   callback = function()
-    if vim.fn.winnr '$' == 1 and vim.fn.win_gettype() == 'quickfix' then
+    if vim.fn.winnr('$') == 1 and vim.fn.win_gettype() == 'quickfix' then
       vim.cmd.q()
     end
   end,

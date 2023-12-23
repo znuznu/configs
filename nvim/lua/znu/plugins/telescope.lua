@@ -1,10 +1,10 @@
-local actions = require 'telescope.actions'
-local builtin = require 'telescope.builtin'
-local layout_strategies = require 'telescope.pickers.layout_strategies'
-local trouble = require 'trouble.providers.telescope'
+local actions = require('telescope.actions')
+local builtin = require('telescope.builtin')
+local layout_strategies = require('telescope.pickers.layout_strategies')
+local trouble = require('trouble.providers.telescope')
 
 local map = require('znu.utils').map
-local custom_pickers = require 'znu.plugins.telescope_custom_pickers'
+local custom_pickers = require('znu.plugins.telescope_custom_pickers')
 
 map('n', '<leader>ff', builtin.find_files)
 map('n', '<leader>fg', custom_pickers.live_grep)
@@ -17,7 +17,7 @@ map('n', '<leader>fc', builtin.git_commits)
 -- map('n', '<leader>fg', builtin.git_branches)
 
 map('n', '<leader>fs', function()
-  custom_pickers.scripts(require('telescope.themes').get_dropdown {})
+  custom_pickers.scripts(require('telescope.themes').get_dropdown({}))
 end)
 
 -- Add an extra line between the prompt and results so that the theme looks OK
@@ -31,7 +31,7 @@ layout_strategies.center = function(picker, columns, lines, layout_config)
   return res
 end
 
-require('telescope').setup {
+require('telescope').setup({
   defaults = {
     prompt_prefix = '   ',
     selection_caret = '  ',
@@ -46,14 +46,14 @@ require('telescope').setup {
         ['<s-down>'] = actions.cycle_history_next,
 
         ['<C-w>'] = function()
-          vim.api.nvim_input '<c-s-w>'
+          vim.api.nvim_input('<c-s-w>')
         end,
-        ['<c-t>'] = trouble.open_with_trouble
+        ['<c-t>'] = trouble.open_with_trouble,
       },
       n = { ['<c-t>'] = trouble.open_with_trouble },
     },
     path_display = function(_, path)
-      local filename = path:gsub(vim.pesc(vim.loop.cwd()) .. '/', ''):gsub(vim.pesc(vim.fn.expand '$HOME'), '~')
+      local filename = path:gsub(vim.pesc(vim.loop.cwd()) .. '/', ''):gsub(vim.pesc(vim.fn.expand('$HOME')), '~')
       local tail = require('telescope.utils').path_tail(filename)
       return string.format('%s  —  %s', tail, filename)
     end,
@@ -66,7 +66,7 @@ require('telescope').setup {
       case_mode = 'smart_case',
     },
     ['ui-select'] = {
-      require('telescope.themes').get_cursor {},
+      require('telescope.themes').get_cursor({}),
     },
   },
   pickers = {
@@ -94,12 +94,12 @@ require('telescope').setup {
       },
     },
   },
-}
+})
 
-require('telescope').load_extension 'fzf'
-require('telescope').load_extension 'notify'
-require('telescope').load_extension 'ui-select'
-require('telescope').load_extension 'noice'
+require('telescope').load_extension('fzf')
+require('telescope').load_extension('notify')
+require('telescope').load_extension('ui-select')
+require('telescope').load_extension('noice')
 
 -- New filetypes
-require('plenary.filetype').add_file 'filetypes'
+require('plenary.filetype').add_file('filetypes')

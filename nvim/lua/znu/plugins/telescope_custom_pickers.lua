@@ -1,15 +1,15 @@
-local Path = require 'plenary.path'
-local action_set = require 'telescope.actions.set'
-local action_state = require 'telescope.actions.state'
+local Path = require('plenary.path')
+local action_set = require('telescope.actions.set')
+local action_state = require('telescope.actions.state')
 local transform_mod = require('telescope.actions.mt').transform_mod
-local actions = require 'telescope.actions'
+local actions = require('telescope.actions')
 local conf = require('telescope.config').values
-local finders = require 'telescope.finders'
-local make_entry = require 'telescope.make_entry'
+local finders = require('telescope.finders')
+local make_entry = require('telescope.make_entry')
 local os_sep = Path.path.sep
-local pickers = require 'telescope.pickers'
-local scan = require 'plenary.scandir'
-local entry_display = require 'telescope.pickers.entry_display'
+local pickers = require('telescope.pickers')
+local scan = require('plenary.scandir')
+local entry_display = require('telescope.pickers.entry_display')
 local read_json_file = require('znu.utils').read_json_file
 local read_package_json = require('znu.utils').read_package_json
 local termcode = require('znu.utils').termcode
@@ -27,16 +27,16 @@ local live_grep_filters = {
 ---Run `live_grep` with the active filters (extension and folders)
 local function run_live_grep(current_input)
   -- TODO: Resume old one with same options somehow
-  require('telescope.builtin').live_grep {
+  require('telescope.builtin').live_grep({
     additional_args = live_grep_filters.extension and function()
       return { '-g', '*.' .. live_grep_filters.extension }
     end,
     search_dirs = live_grep_filters.directories,
     default_text = current_input,
-  }
+  })
 end
 
-M.actions = transform_mod {
+M.actions = transform_mod({
   ---Ask for a file extension and open a new `live_grep` filtering by it
   set_extension = function(prompt_bufnr)
     local current_picker = action_state.get_current_picker(prompt_bufnr)
@@ -70,34 +70,36 @@ M.actions = transform_mod {
     table.insert(data, 1, '.' .. os_sep)
 
     actions._close(prompt_bufnr, current_picker.initial_mode == 'insert')
-    pickers.new({}, {
-      prompt_title = 'Folders for Live Grep',
-      finder = finders.new_table { results = data, entry_maker = make_entry.gen_from_file {} },
-      previewer = conf.file_previewer {},
-      sorter = conf.file_sorter {},
-      attach_mappings = function(prompt_bufnr)
-        action_set.select:replace(function()
-          local current_picker = action_state.get_current_picker(prompt_bufnr)
+    pickers
+      .new({}, {
+        prompt_title = 'Folders for Live Grep',
+        finder = finders.new_table({ results = data, entry_maker = make_entry.gen_from_file({}) }),
+        previewer = conf.file_previewer({}),
+        sorter = conf.file_sorter({}),
+        attach_mappings = function(prompt_bufnr)
+          action_set.select:replace(function()
+            local current_picker = action_state.get_current_picker(prompt_bufnr)
 
-          local dirs = {}
-          local selections = current_picker:get_multi_selection()
-          if vim.tbl_isempty(selections) then
-            table.insert(dirs, action_state.get_selected_entry().value)
-          else
-            for _, selection in ipairs(selections) do
-              table.insert(dirs, selection.value)
+            local dirs = {}
+            local selections = current_picker:get_multi_selection()
+            if vim.tbl_isempty(selections) then
+              table.insert(dirs, action_state.get_selected_entry().value)
+            else
+              for _, selection in ipairs(selections) do
+                table.insert(dirs, selection.value)
+              end
             end
-          end
-          live_grep_filters.directories = dirs
+            live_grep_filters.directories = dirs
 
-          actions.close(prompt_bufnr)
-          run_live_grep(current_input)
-        end)
-        return true
-      end,
-    }):find()
+            actions.close(prompt_bufnr)
+            run_live_grep(current_input)
+          end)
+          return true
+        end,
+      })
+      :find()
   end,
-}
+})
 
 ---Small wrapper over `live_grep` to first reset our active filters
 M.live_grep = function()
@@ -117,7 +119,7 @@ M.scripts = function(opts)
   local npm_scripts = vim.tbl_keys(package_json.scripts or {})
 
   local make_scripts = {}
-  local makefile_path = Path:new 'Makefile'
+  local makefile_path = Path:new('Makefile')
   if makefile_path:exists() then
     local makefile = makefile_path:read()
     local makefile_lines = vim.split(makefile, '\n')
@@ -132,11 +134,11 @@ M.scripts = function(opts)
     )
   end
 
-  local composer_json = read_json_file 'composer.json' or {}
+  local composer_json = read_json_file('composer.json') or {}
   local composer_scripts = vim.tbl_keys(composer_json.scripts or {})
 
   if #npm_scripts == 0 and #make_scripts == 0 then
-    return vim.notify 'No scripts found!'
+    return vim.notify('No scripts found!')
   end
 
   local mapped_scripts = vim.list_extend(
@@ -163,54 +165,56 @@ M.scripts = function(opts)
     return #script[1]
   end, mapped_scripts)))
 
-  local displayer = entry_display.create {
+  local displayer = entry_display.create({
     separator = '  ',
     items = {
       { width = longest_executable_name },
       { width = longest_script_name },
       { remaining = true },
     },
-  }
+  })
 
   local make_display = function(entry)
-    return displayer {
+    return displayer({
       { entry.executable, 'TelescopeResultsIdentifier' },
       { entry.value, 'TelescopeResultsIdentifier' },
       { entry.cmd or '', 'TelescopeResultsComment' },
-    }
+    })
   end
 
-  pickers.new(opts, {
-    prompt_title = 'Scripts',
+  pickers
+    .new(opts, {
+      prompt_title = 'Scripts',
 
-    finder = finders.new_table {
-      results = mapped_scripts,
-      entry_maker = function(entry)
-        return {
-          value = entry[1],
-          display = make_display,
-          ordinal = entry[3] and (entry[2] .. ' ' .. entry[1] .. ' ' .. entry[3]) or (entry[2] .. ' ' .. entry[1]),
-          cmd = entry[3],
-          executable = entry[2],
-        }
+      finder = finders.new_table({
+        results = mapped_scripts,
+        entry_maker = function(entry)
+          return {
+            value = entry[1],
+            display = make_display,
+            ordinal = entry[3] and (entry[2] .. ' ' .. entry[1] .. ' ' .. entry[3]) or (entry[2] .. ' ' .. entry[1]),
+            cmd = entry[3],
+            executable = entry[2],
+          }
+        end,
+      }),
+
+      sorter = conf.generic_sorter(opts),
+
+      attach_mappings = function(prompt_bufnr)
+        actions.select_default:replace(function()
+          actions.close(prompt_bufnr)
+          local selection = action_state.get_selected_entry()
+
+          local script = selection.value
+
+          vim.cmd.T(selection.executable .. ' ' .. script)
+          vim.cmd.Topen()
+        end)
+        return true
       end,
-    },
-
-    sorter = conf.generic_sorter(opts),
-
-    attach_mappings = function(prompt_bufnr)
-      actions.select_default:replace(function()
-        actions.close(prompt_bufnr)
-        local selection = action_state.get_selected_entry()
-
-        local script = selection.value
-
-        vim.cmd.T(selection.executable .. ' ' .. script)
-        vim.cmd.Topen()
-      end)
-      return true
-    end,
-  }):find()
+    })
+    :find()
 end
 
 return M

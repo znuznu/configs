@@ -110,19 +110,19 @@ map('v', 'ae', [[:<c-u>silent! normal! m'gg0VG$<cr>]], { silent = true })
 map('o', 'ae', ':normal Vae<cr>', { noremap = false, silent = true })
 
 -- Don't move cursor after a line merge
-map("n", "J", "mzJ`z")
+map('n', 'J', 'mzJ`z')
 
 -- Stay in the middle while searching
-map("n", "n", "nzzzv")
-map("n", "N", "Nzzzv")
+map('n', 'n', 'nzzzv')
+map('n', 'N', 'Nzzzv')
 
 -- Move current line
-map("n", "<A-j>", ":m .+1<CR>==")
-map("n", "<A-k>", ":m .-2<CR>==")
+map('n', '<A-j>', ':m .+1<CR>==')
+map('n', '<A-k>', ':m .-2<CR>==')
 
 -- Move selected lines
-map("v", "<A-k>", ":m '<-2<CR>gv=gv")
-map("v", "<A-j>", ":m '>+1<CR>gv=gv")
+map('v', '<A-k>', ":m '<-2<CR>gv=gv")
+map('v', '<A-j>', ":m '>+1<CR>gv=gv")
 
 -- barbar
 
@@ -137,9 +137,21 @@ map('n', '<A-,>', '<Cmd>BufferPrevious<CR>', { noremap = true })
 map('n', '<A-;>', '<Cmd>BufferNext<CR>', { noremap = true })
 
 -- Trouble
-vim.keymap.set("n", "<leader>xx", function() require("trouble").toggle() end)
-vim.keymap.set("n", "<leader>xw", function() require("trouble").toggle("workspace_diagnostics") end)
-vim.keymap.set("n", "<leader>xd", function() require("trouble").toggle("document_diagnostics") end)
-vim.keymap.set("n", "<leader>xq", function() require("trouble").toggle("quickfix") end)
-vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)
-vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)
+vim.keymap.set('n', '<leader>xx', function()
+  require('trouble').toggle()
+end)
+vim.keymap.set('n', '<leader>xw', function()
+  require('trouble').toggle('workspace_diagnostics')
+end)
+vim.keymap.set('n', '<leader>xd', function()
+  require('trouble').toggle('document_diagnostics')
+end)
+vim.keymap.set('n', '<leader>xq', function()
+  require('trouble').toggle('quickfix')
+end)
+vim.keymap.set('n', '<leader>xl', function()
+  require('trouble').toggle('loclist')
+end)
+vim.keymap.set('n', 'gR', function()
+  require('trouble').toggle('lsp_references')
+end)

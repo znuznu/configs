@@ -1,5 +1,5 @@
 -- Custom filetype detection logic with the new Lua filetype plugin
-vim.filetype.add {
+vim.filetype.add({
   extension = {
     png = 'image',
     jpg = 'image',
@@ -19,4 +19,4 @@ vim.filetype.add {
     ['.*config/git/config'] = 'gitconfig',
     ['.env.*'] = 'sh',
   },
-}
+})

@@ -7,16 +7,16 @@ map('n', ',', '<nop>')
 map('v', ',', '<nop>')
 g.mapleader = ','
 
-require 'znu.settings'
-require 'znu.commands'
-require 'znu.autocmds'
-require 'znu.plugins'
-require 'znu.mappings'
-require 'znu.abbreviations'
-require 'znu.statusline'
-require 'znu.winbar'
-require 'znu.tabline'
-require 'znu.file_info'
-require 'znu.terminal'
+require('znu.settings')
+require('znu.commands')
+require('znu.autocmds')
+require('znu.plugins')
+require('znu.mappings')
+require('znu.abbreviations')
+require('znu.statusline')
+require('znu.winbar')
+require('znu.tabline')
+require('znu.file_info')
+require('znu.terminal')
 
-vim.cmd [[colorscheme moonfly]]
+vim.cmd([[colorscheme moonfly]])

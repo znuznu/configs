@@ -3,7 +3,7 @@ local M = {}
 function M.tabline()
   local tabs = {}
 
-  for i = 1, vim.fn.tabpagenr '$' do
+  for i = 1, vim.fn.tabpagenr('$') do
     local tabnr = i
     local winnr = vim.fn.tabpagewinnr(tabnr)
     local buflist = vim.fn.tabpagebuflist(tabnr)

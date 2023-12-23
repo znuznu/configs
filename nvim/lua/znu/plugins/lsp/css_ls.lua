@@ -1,5 +1,5 @@
 -- https://github.com/vscode-langservers/vscode-css-languageserver-bin
-require('lspconfig').cssls.setup {
+require('lspconfig').cssls.setup({
   on_attach = require('znu.plugins.lsp').on_attach,
   capabilities = require('znu.plugins.lsp').capabilities,
   settings = {
@@ -10,4 +10,4 @@ require('lspconfig').cssls.setup {
       },
     },
   },
-}
+})

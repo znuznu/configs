@@ -1,35 +1,35 @@
-local neotest = require 'neotest'
+local neotest = require('neotest')
 
 local map = require('znu.utils').map
 local is_npm_package_installed = require('znu.utils').is_npm_package_installed
 
 local adapters = {}
-if is_npm_package_installed 'jest' then
+if is_npm_package_installed('jest') then
   table.insert(
     adapters,
-    require 'neotest-jest' {
+    require('neotest-jest')({
       jestCommand = 'npm test --',
       env = { CI = true },
       cwd = function()
         return vim.fn.getcwd()
       end,
-    }
+    })
   )
 end
 
-if is_npm_package_installed 'vitest' then
+if is_npm_package_installed('vitest') then
   table.insert(
     adapters,
-    require 'neotest-vitest' {
+    require('neotest-vitest')({
       vitestCommand = 'npm test --',
       env = { CI = true },
-    }
+    })
   )
 end
 
-neotest.setup {
+neotest.setup({
   consumers = {
-    statusline = require 'znu.plugins.neotest_consumer_statusline',
+    statusline = require('znu.plugins.neotest_consumer_statusline'),
   },
 
   adapters = adapters,
@@ -38,16 +38,16 @@ neotest.setup {
     enabled = true,
     open_on_run = true,
   },
-}
+})
 
 map('n', '<leader>tn', function()
   neotest.run.run()
 end)
 map('n', '<leader>tf', function()
-  neotest.run.run(vim.fn.expand '%')
+  neotest.run.run(vim.fn.expand('%'))
 end)
 map('n', '<leader>ta', function()
-  neotest.run.run 'src'
+  neotest.run.run('src')
 end)
 map('n', '<leader>tl', function()
   neotest.run.run_last()

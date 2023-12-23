@@ -15,11 +15,11 @@ local mode_colors = {
   R = 'Replace',
   v = 'Visual',
   V = 'Visual',
-  [termcode '<c-v>'] = 'Visual',
+  [termcode('<c-v>')] = 'Visual',
   c = 'Command',
   s = 'Normal',
   S = 'Normal',
-  [termcode '<c-s>'] = 'Normal',
+  [termcode('<c-s>')] = 'Normal',
   t = 'Normal',
 }
 
@@ -30,8 +30,8 @@ local function mode()
 end
 
 local function icon()
-  local file_name = vim.fn.expand '%:p:t'
-  local extension = vim.fn.expand '%:e'
+  local file_name = vim.fn.expand('%:p:t')
+  local extension = vim.fn.expand('%:e')
 
   local the_icon, highlight = require('nvim-web-devicons').get_icon(file_name, extension)
 

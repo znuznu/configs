@@ -1,4 +1,4 @@
-local cmp = require 'cmp'
+local cmp = require('cmp')
 
 -- Codicons, download from
 -- https://github.com/microsoft/vscode-codicons/raw/main/dist/codicon.ttf and
@@ -31,20 +31,20 @@ local icons = {
   TypeParameter = ' ',
 }
 
-cmp.setup {
+cmp.setup({
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
     end,
   },
 
-  mapping = cmp.mapping.preset.insert {
+  mapping = cmp.mapping.preset.insert({
     ['<C-Space>'] = cmp.mapping.complete(),
-    ['<C-y>'] = cmp.mapping.confirm {
+    ['<C-y>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true,
-    },
-  },
+    }),
+  }),
 
   sources = {
     { name = 'git' },
@@ -63,9 +63,9 @@ cmp.setup {
   },
 
   window = {
-    documentation = cmp.config.window.bordered {
+    documentation = cmp.config.window.bordered({
       winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:Visual,Search:None',
-    },
+    }),
     completion = {
       side_padding = 0,
       col_offset = -3,
@@ -105,6 +105,6 @@ cmp.setup {
       return vim_item
     end,
   },
-}
+})
 
 require('cmp_git').setup()

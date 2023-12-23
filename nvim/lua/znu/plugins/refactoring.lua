@@ -1,4 +1,4 @@
-require('refactoring').setup {}
+require('refactoring').setup({})
 
 vim.keymap.set('v', '<leader>rf', [[<esc><cmd>lua require('refactoring').refactor('Extract Function')<cr>]])
 vim.keymap.set('v', '<leader>rv', [[<esc><cmd>lua require('refactoring').refactor('Extract Variable')<cr>]])

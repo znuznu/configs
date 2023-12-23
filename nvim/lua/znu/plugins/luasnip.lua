@@ -1,7 +1,7 @@
-local ls = require 'luasnip'
-local types = require 'luasnip.util.types'
+local ls = require('luasnip')
+local types = require('luasnip.util.types')
 
-ls.config.set_config {
+ls.config.set_config({
   -- history = true,
 
   update_events = { 'TextChanged', 'TextChangedI' },
@@ -20,7 +20,7 @@ ls.config.set_config {
       },
     },
   },
-}
+})
 
 -- Mappings
 
@@ -53,8 +53,8 @@ vim.keymap.set('n', '<leader>sl', '<cmd>source ~/.config/nvim/lua/znu/plugins/lu
 
 -- Snippets
 
-require 'znu.plugins.snippets.lua'
-require 'znu.plugins.snippets.javascript'
-require 'znu.plugins.snippets.typescript'
-require 'znu.plugins.snippets.typescriptreact'
-require 'znu.plugins.snippets.graphql'
+require('znu.plugins.snippets.lua')
+require('znu.plugins.snippets.javascript')
+require('znu.plugins.snippets.typescript')
+require('znu.plugins.snippets.typescriptreact')
+require('znu.plugins.snippets.graphql')

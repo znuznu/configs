@@ -1,4 +1,4 @@
-local ls = require 'luasnip'
+local ls = require('luasnip')
 local fmt = require('luasnip.extras.fmt').fmt
 local rep = require('luasnip.extras').rep
 

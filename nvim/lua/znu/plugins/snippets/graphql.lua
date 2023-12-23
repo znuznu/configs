@@ -1,4 +1,4 @@
-local ls = require 'luasnip'
+local ls = require('luasnip')
 
 local s = ls.s
 local d = ls.dynamic_node

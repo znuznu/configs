@@ -21,11 +21,11 @@ g.nvim_tree_icons = {
   },
 }
 
-map("n", "<leader>nt", ":NvimTreeToggle<CR>")
+map('n', '<leader>nt', ':NvimTreeToggle<CR>')
 
-require('nvim-tree').setup {
+require('nvim-tree').setup({
   filters = {
     custom = { '.git', '.DS_Store' },
   },
-  update_focused_file = { enable = true }
-}
+  update_focused_file = { enable = true },
+})

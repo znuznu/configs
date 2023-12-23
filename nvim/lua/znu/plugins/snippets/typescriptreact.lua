@@ -1,4 +1,4 @@
-local ls = require 'luasnip'
+local ls = require('luasnip')
 local fmt = require('luasnip.extras.fmt').fmt
 local s = ls.snippet
 local i = ls.insert_node
@@ -53,7 +53,7 @@ ls.add_snippets('typescriptreact', {
 {}default function {}({{{}}}: {}Props) {{
   {}
 }}
-]]     ,
+]],
       {
         -- Import React if it's not yet imported
         f(function()
@@ -87,8 +87,7 @@ ls.add_snippets('typescriptreact', {
           local parser = vim.treesitter.get_parser(0, 'tsx')
           local tstree = parser:parse()
 
-          local node = tstree[1]:root():named_descendant_for_range(pos_begin[1], pos_begin[2], pos_end[1],
-            pos_end[2])
+          local node = tstree[1]:root():named_descendant_for_range(pos_begin[1], pos_begin[2], pos_end[1], pos_end[2])
 
           while node ~= nil and node:type() ~= 'type_alias_declaration' do
             node = node:parent()
@@ -135,7 +134,7 @@ type {}Props = {{
 export const {}: Component<{}Props> = ({}) => {{
   return {}
 }}
-]]     ,
+]],
       {
         d(1, function(_, snip)
           return sn(nil, {

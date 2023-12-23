@@ -1,8 +1,8 @@
-require('noice').setup {
+require('noice').setup({
   cmdline = {
     format = {
-      search_down = { kind = 'search', pattern = '^/', icon = '', lang = 'regex', view = "cmdline" },
-      search_up = { kind = 'search', pattern = '^%?', icon = '', lang = 'regex', view = "cmdline" },
+      search_down = { kind = 'search', pattern = '^/', icon = '', lang = 'regex', view = 'cmdline' },
+      search_up = { kind = 'search', pattern = '^%?', icon = '', lang = 'regex', view = 'cmdline' },
     },
   },
   lsp = {
@@ -107,4 +107,4 @@ require('noice').setup {
       skip = true,
     },
   },
-}
+})

@@ -34,13 +34,13 @@ function M.make(compiler, open_quickfix)
           lines = lines,
           efm = vim.api.nvim_buf_get_option(bufnr, 'errorformat'),
         })
-        vim.api.nvim_command 'doautocmd QuickFixCmdPost'
+        vim.api.nvim_command('doautocmd QuickFixCmdPost')
         if open_quickfix then
           vim.cmd.copen()
-          vim.cmd.wincmd 'p'
+          vim.cmd.wincmd('p')
         end
       else
-        print 'No errors'
+        print('No errors')
       end
     end
   end

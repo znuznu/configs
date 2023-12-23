@@ -1,8 +1,8 @@
-local lir = require 'lir'
-local actions = require 'lir.actions'
-local mark_actions = require 'lir.mark.actions'
-local clipboard_actions = require 'lir.clipboard.actions'
-local Path = require 'plenary.path'
+local lir = require('lir')
+local actions = require('lir.actions')
+local mark_actions = require('lir.mark.actions')
+local clipboard_actions = require('lir.clipboard.actions')
+local Path = require('plenary.path')
 
 local buf_map = require('znu.utils').buf_map
 
@@ -32,32 +32,32 @@ local function new_file()
     if is_folder then
       -- Create a new directory
       name = name:gsub('/$', '')
-      path:mkdir {
+      path:mkdir({
         parents = true,
         mode = tonumber('700', 8),
         exists_ok = false,
-      }
+      })
 
       actions.reload()
 
       -- Jump to a line in the parent directory of the file you created.
-      local lnum = lir.get_context():indexof(name:match '^[^/]+')
+      local lnum = lir.get_context():indexof(name:match('^[^/]+'))
       if lnum then
         vim.cmd(tostring(lnum))
       end
     else
       -- Create a new file
-      path:touch {
+      path:touch({
         parents = true,
         mode = tonumber('644', 8),
-      }
+      })
 
       vim.cmd.e(path:expand())
     end
   end)
 end
 
-require('lir').setup {
+require('lir').setup({
   show_hidden_files = true,
   devicons = {
     enable = true,
@@ -82,7 +82,7 @@ require('lir').setup {
 
     ['J'] = function()
       mark_actions.toggle_mark()
-      vim.cmd.normal { 'j', bang = true }
+      vim.cmd.normal({ 'j', bang = true })
     end,
     ['C'] = clipboard_actions.copy,
     ['X'] = clipboard_actions.cut,
@@ -101,7 +101,7 @@ require('lir').setup {
     winblend = 0,
   },
   hide_cursor = true,
-}
+})
 
 local group = vim.api.nvim_create_augroup('LirSettings', {})
 vim.api.nvim_create_autocmd('FileType', {
@@ -109,7 +109,7 @@ vim.api.nvim_create_autocmd('FileType', {
   pattern = 'lir',
   callback = function()
     buf_map(0, 'x', 'J', function()
-      mark_actions.toggle_mark 'v'
+      mark_actions.toggle_mark('v')
     end, {
       noremap = true,
       silent = true,
