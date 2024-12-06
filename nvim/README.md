@@ -2,7 +2,7 @@
 
 Complete Neovim configuration best suited for TypeScript, React, Rust and Lua.
 
-It is highly inspired by the one from [JoosepAlviste](https://github.com/JoosepAlviste/dotfiles).
+It is strongly inspired by the one from [JoosepAlviste](https://github.com/JoosepAlviste/dotfiles).
 
 ## Requirements
 
