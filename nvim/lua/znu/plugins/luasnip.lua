@@ -47,14 +47,3 @@ vim.keymap.set({ "i", "s" }, "<c-k>", function()
     ls.change_choice(1)
   end
 end, { silent = true })
-
--- Reload snippets config
-vim.keymap.set("n", "<leader>sl", "<cmd>source ~/.config/nvim/lua/znu/plugins/luasnip.lua<cr>")
-
--- Snippets
-
-require("znu.plugins.snippets.lua")
-require("znu.plugins.snippets.javascript")
-require("znu.plugins.snippets.typescript")
-require("znu.plugins.snippets.typescriptreact")
-require("znu.plugins.snippets.graphql")
