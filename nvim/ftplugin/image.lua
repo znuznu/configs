@@ -1,1 +1,1 @@
-require('znu.filesystem').open_special_file()
+require("znu.filesystem").open_special_file()

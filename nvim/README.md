@@ -6,7 +6,7 @@ It is highly inspired by the one from [JoosepAlviste](https://github.com/JoosepA
 
 ## Requirements
 
-* [Neovim](https://neovim.io/) >= 0.9
+* [Neovim](https://neovim.io/) >= 0.10
 * [ripgrep](https://github.com/BurntSushi/ripgrep)
 * a Nerd Font (optional)
 

@@ -1,5 +1,5 @@
-local map = require('znu.utils').map
+local map = require("znu.utils").map
 
-map('n', '<leader>av', [[:AV<cr>]], { silent = true })
-map('n', '<leader>as', [[:AS<cr>]], { silent = true })
-map('n', '<leader>ae', [[:A<cr>]], { silent = true })
+map("n", "<leader>av", [[:AV<cr>]], { silent = true })
+map("n", "<leader>as", [[:AS<cr>]], { silent = true })
+map("n", "<leader>ae", [[:A<cr>]], { silent = true })
