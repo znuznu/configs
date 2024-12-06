@@ -41,7 +41,7 @@ map("n", "[l", ":lprev<cr>", { silent = true })
 map("n", "gx", [[:call znu#open#open_url_under_cursor()<cr>]], { silent = true })
 
 map("n", "<F10>", function()
-	require("znu.syntax").print_syntax()
+  require("znu.syntax").print_syntax()
 end, { silent = true })
 
 -- Open the current file's directory
@@ -50,20 +50,20 @@ map("n", "H", [[:echo 'Use - instead!'<cr>]])
 
 -- Close floating windows, clear highlights, etc.
 map("n", "<esc>", function()
-	require("notify").dismiss()
-	vim.lsp.buf.clear_references()
-	vim.cmd.nohlsearch()
+  require("notify").dismiss()
+  vim.lsp.buf.clear_references()
+  vim.cmd.nohlsearch()
 
-	local ignored_filetypes = { "incline", "noice" }
+  local ignored_filetypes = { "incline", "noice" }
 
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		local status, config = pcall(vim.api.nvim_win_get_config, win)
-		local bufnr = vim.fn.winbufnr(win)
-		local buf_filetype = vim.fn.getbufvar(bufnr, "&filetype")
-		if config and config.relative ~= "" and not vim.tbl_contains(ignored_filetypes, buf_filetype) then
-			vim.api.nvim_win_close(win, false)
-		end
-	end
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local status, config = pcall(vim.api.nvim_win_get_config, win)
+    local bufnr = vim.fn.winbufnr(win)
+    local buf_filetype = vim.fn.getbufvar(bufnr, "&filetype")
+    if config and config.relative ~= "" and not vim.tbl_contains(ignored_filetypes, buf_filetype) then
+      vim.api.nvim_win_close(win, false)
+    end
+  end
 end)
 
 -- Leader mappings
@@ -138,20 +138,20 @@ map("n", "<A-;>", "<Cmd>BufferNext<CR>", { noremap = true })
 
 -- Trouble
 vim.keymap.set("n", "<leader>xx", function()
-	require("trouble").toggle()
+  require("trouble").toggle()
 end)
 vim.keymap.set("n", "<leader>xw", function()
-	require("trouble").toggle("workspace_diagnostics")
+  require("trouble").toggle("workspace_diagnostics")
 end)
 vim.keymap.set("n", "<leader>xd", function()
-	require("trouble").toggle("document_diagnostics")
+  require("trouble").toggle("document_diagnostics")
 end)
 vim.keymap.set("n", "<leader>xq", function()
-	require("trouble").toggle("quickfix")
+  require("trouble").toggle("quickfix")
 end)
 vim.keymap.set("n", "<leader>xl", function()
-	require("trouble").toggle("loclist")
+  require("trouble").toggle("loclist")
 end)
 vim.keymap.set("n", "gR", function()
-	require("trouble").toggle("lsp_references")
+  require("trouble").toggle("lsp_references")
 end)

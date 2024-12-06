@@ -3,13 +3,13 @@ local zk = require("zk")
 local map = require("znu.utils").map
 
 zk.setup({
-	picker = "telescope",
-	lsp = {
-		config = {
-			on_attach = require("znu.plugins.lsp").on_attach,
-			capabilities = require("znu.plugins.lsp").capabilities,
-		},
-	},
+  picker = "telescope",
+  lsp = {
+    config = {
+      on_attach = require("znu.plugins.lsp").on_attach,
+      capabilities = require("znu.plugins.lsp").capabilities,
+    },
+  },
 })
 require("telescope").load_extension("zk")
 
