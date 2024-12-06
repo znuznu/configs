@@ -178,9 +178,20 @@ require("lazy").setup({
       require("znu.plugins.treesitter")
     end,
     dependencies = {
-      "windwp/nvim-ts-autotag", -- Automatically end & rename tags
       "nvim-treesitter/playground",
     },
+  },
+  {
+    "andymass/vim-matchup",
+    config = function()
+      vim.g.matchup_matchparen_offscreen = {}
+    end,
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
   },
 
   -- Misc
@@ -351,8 +362,8 @@ require("lazy").setup({
       require("znu.plugins.neoterm")
     end,
     keys = {
-      { "<c-q>", [[:Ttoggle<cr>]], silent = true },
-      { "<c-q>", [[<c-\><c-n>:Ttoggle<cr>]], mode = "t", silent = true },
+      { "<c-q>", [[:Ttoggle<cr>]],           silent = true },
+      { "<c-q>", [[<c-\><c-n>:Ttoggle<cr>]], mode = "t",   silent = true },
     },
   },
 

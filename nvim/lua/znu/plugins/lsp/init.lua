@@ -115,9 +115,9 @@ function M.on_attach(client, bufnr)
   end
 
   -- Autoformatting
-  local formatting_disabled_ls = { "tsserver" }
+  local formatting_disabled_ls = { "tsserver", "typescript-tools" }
   if
-    client.supports_method("textDocument/formatting") and not vim.tbl_contains(formatting_disabled_ls, client.name)
+      client.supports_method("textDocument/formatting") and not vim.tbl_contains(formatting_disabled_ls, client.name)
   then
     vim.api.nvim_clear_autocmds({ group = formatting_augroup, buffer = bufnr })
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -225,16 +225,16 @@ local function list_or_jump(action, title, opts)
     else
       local locations = vim.lsp.util.locations_to_items(flattened_results, offset_encoding)
       pickers
-        .new(opts, {
-          prompt_title = title,
-          finder = finders.new_table({
-            results = locations,
-            entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
-          }),
-          previewer = conf.qflist_previewer(opts),
-          sorter = conf.generic_sorter(opts),
-        })
-        :find()
+          .new(opts, {
+            prompt_title = title,
+            finder = finders.new_table({
+              results = locations,
+              entry_maker = opts.entry_maker or make_entry.gen_from_quickfix(opts),
+            }),
+            previewer = conf.qflist_previewer(opts),
+            sorter = conf.generic_sorter(opts),
+          })
+          :find()
     end
   end)
 end
