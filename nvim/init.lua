@@ -1,22 +1,37 @@
-local g = vim.g
+vim.g.base46_cache = vim.fn.stdpath "data" .. "/base46/"
+vim.g.mapleader = ","
 
-local map = require("znu.utils").map
+-- bootstrap lazy and all plugins
+local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
 
--- Ultimate leader key for an absolute control
-map("n", ",", "<nop>")
-map("v", ",", "<nop>")
-g.mapleader = ","
+if not vim.uv.fs_stat(lazypath) then
+  local repo = "https://github.com/folke/lazy.nvim.git"
+  vim.fn.system { "git", "clone", "--filter=blob:none", repo, "--branch=stable", lazypath }
+end
 
-require("znu.settings")
-require("znu.commands")
-require("znu.autocmds")
-require("znu.plugins")
-require("znu.mappings")
-require("znu.abbreviations")
-require("znu.statusline")
-require("znu.winbar")
-require("znu.tabline")
-require("znu.file_info")
-require("znu.terminal")
+vim.opt.rtp:prepend(lazypath)
 
-vim.cmd([[colorscheme moonfly]])
+local lazy_config = require "configs.lazy"
+
+-- load plugins
+require("lazy").setup({
+  {
+    "NvChad/NvChad",
+    lazy = false,
+    branch = "v2.5",
+    import = "nvchad.plugins",
+  },
+
+  { import = "plugins" },
+}, lazy_config)
+
+-- load theme
+dofile(vim.g.base46_cache .. "defaults")
+dofile(vim.g.base46_cache .. "statusline")
+
+require "options"
+require "autocmds"
+
+vim.schedule(function()
+  require "mappings"
+end)
