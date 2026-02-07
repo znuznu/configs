@@ -14,15 +14,23 @@ return {
   },
 
   {
-  	"nvim-treesitter/nvim-treesitter",
-  	opts = {
-  		ensure_installed = {
-  			"vim", "lua", "vimdoc",
-        "html", "css", "prisma",
-        "typescript", "javascript",
-        "scss", "tsx", "jsx", "astro"
-  		},
-  	},
+    "nvim-treesitter/nvim-treesitter",
+    opts = {
+      ensure_installed = {
+        "astro",
+        "css",
+        "html",
+        "javascript",
+        "jsx",
+        "lua",
+        "prisma",
+        "scss",
+        "tsx",
+        "typescript",
+        "vim",
+        "vimdoc",
+      },
+    },
   },
 
   {
@@ -32,10 +40,10 @@ return {
     end,
   },
 
-   {
+  {
     "lewis6991/gitsigns.nvim",
     opts = function()
       return require "configs.gitsigns"
-    end
-  }
+    end,
+  },
 }
