@@ -39,3 +39,16 @@ if require("nvconfig").ui.tabufline.enabled then
     require("nvchad.tabufline").close_buffer()
   end, { desc = "buffer close" })
 end
+
+-- Save
+map("n", "<leader>w", ":silent w!<cr>", { silent = true })
+
+-- Search & replace word under cursor
+map("n", "<leader>sr", ":%s/\\<<c-r><c-w>\\>/")
+
+-- Don't move cursor after a line merge
+map("n", "J", "mzJ`z")
+
+-- Stay in the middle while searching
+map("n", "n", "nzzzv")
+map("n", "N", "Nzzzv")
