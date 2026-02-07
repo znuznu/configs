@@ -14,4 +14,9 @@ Complete Neovim configuration based on [NvChad](https://github.com/NvChad/NvChad
 * Copy this folder in .config/nvim
 * Run `nvim`
 * Run `MasonInstallAll`
-* Run `Lazy sync` and `checkhealth: lazy` to ensure everything is OK
+* Run `TSInstallAll`
+* Run `checkhealth` to ensure everything is OK
+
+## Update
+
+* Run `Lazy update`
