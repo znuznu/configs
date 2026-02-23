@@ -19,6 +19,10 @@ map("n", "<A-k>", ":m .-2<CR>==")
 map("v", "<A-k>", ":m '<-2<CR>gv=gv")
 map("v", "<A-j>", ":m '>+1<CR>gv=gv")
 
+-- Move inside Quickfix list
+map("n", "<C-k>", "<cmd>cprev<CR>", { desc = "Previous quickfix item" })
+map("n", "<C-j>", "<cmd>cnext<CR>", { desc = "Next quickfix item" })
+
 -- Terminal
 map("n", "<leader>h", "") -- disable default
 map({ "n", "t" }, "<C-q>", function()
