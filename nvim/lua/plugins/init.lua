@@ -92,4 +92,11 @@ return {
       require "configs.opencode"
     end,
   },
+
+  {
+    "akinsho/git-conflict.nvim",
+    version = "a1badcd",
+    config = true,
+    lazy = false,
+  },
 }
