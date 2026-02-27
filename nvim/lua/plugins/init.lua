@@ -99,4 +99,10 @@ return {
     config = true,
     lazy = false,
   },
+
+  {
+    "znuznu/typist.nvim",
+    opts = {},
+    lazy = false,
+  },
 }
